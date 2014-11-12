@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<decorators defaultdir="/WEB-INF/views">
+	
+	<!-- Method-1 默认装饰页面, 在需要装饰的页面增加<meta name="decorator" content="default"/> 
+	当解开的时候请在index.jsp中把<meta name="decorator" content="default"/> 解开-->
+	<decorator name="default" page="main.jsp" />
+
+    <!-- 此处用来定义不需要过滤的页面 -->  
+    <excludes>  
+    </excludes>  
+
+    <!-- Method-2 用来定义装饰器要过滤的页面 -->  
+    <!-- main.jsp用来描述一个装饰布局，其中描述了要提取的信怎和位置 -->
+    <decorator name="main" page="main.jsp">  
+      <pattern>/*</pattern>  
+    </decorator>     	
+</decorators>

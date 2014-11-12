@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.dyp.test</groupId>
+  <artifactId>sitemesh</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>sitemesh Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+   <properties>
+		<spring.version>3.2.5.RELEASE</spring.version>
+		<sitemesh.version>2.4.2</sitemesh.version>		
+  </properties>
+  
+  	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+	
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址.
+		<repository>
+			<id>nexus-repos</id>
+			<name>Team Nexus Repository</name>
+			<url>http://localhost:8081/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository> -->
+		
+		<repository>
+			<id>central-repos</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+		
+		<repository>
+			<id>central-repos2</id>
+			<name>Central Repository 2</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+		
+		<repository>
+			<id>springsource-repos</id>
+			<name>SpringSource Repository</name>
+			<url>http://repo.springsource.org/libs-milestone-local</url>
+	    </repository>
+		
+		<repository>
+			<id>activiti-repos</id>
+			<name>Activiti Repository</name>
+			<url>https://maven.alfresco.com/nexus/content/groups/public</url>
+		</repository>
+		
+		<repository>
+			<id>activiti-repos2</id>
+			<name>Activiti Repository 2</name>
+			<url>https://app.camunda.com/nexus/content/groups/public</url>
+		</repository>
+		
+		<repository> 
+			<id>thinkgem-repos</id> 
+			<name>ThinkGem Repository</name>
+			<url>http://git.oschina.net/thinkgem/repos/raw/master</url>
+		</repository>
+		
+		<repository> 
+			<id>thinkgem-repos2</id> 
+			<name>ThinkGem Repository 2</name>
+			<url>https://raw.github.com/thinkgem/repository/master</url>
+		</repository>
+		<repository>
+		  <id>bitwalker.user-agent-utils.mvn.repo</id>
+		  <url>https://raw.github.com/HaraldWalker/user-agent-utils/mvn-repo/</url>
+		  <!-- use snapshot version -->
+		  <snapshots>
+		     <enabled>true</enabled>
+		     <updatePolicy>always</updatePolicy>
+		   </snapshots>
+		</repository>
+		
+	</repositories>	
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+	  <groupId>org.springframework</groupId>
+	  <artifactId>spring-webmvc</artifactId>
+	  <version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>opensymphony</groupId>
+		<artifactId>sitemesh</artifactId>
+		<version>${sitemesh.version}</version>
+		<scope>runtime</scope>
+	</dependency>
+  </dependencies>
+  
+ 
+  
+  <build>
+    <finalName>sitemesh</finalName>
+  </build>
+</project>

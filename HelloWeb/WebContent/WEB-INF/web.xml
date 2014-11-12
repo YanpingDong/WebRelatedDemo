@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>HelloWeb</display-name>
+  <!-- configure your servlet -->
+  <servlet>
+    <servlet-name>ServletScop</servlet-name>
+    <servlet-class>com.dyp.web.ServletScop</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletScop</servlet-name>
+    <url-pattern>/scop</url-pattern>
+  </servlet-mapping>
+  
+  <!-- configure your filter  -->
+  <filter>
+  	<filter-name>CharacterFilter</filter-name>
+  	<filter-class>com.dyp.filter.CharacterFilter</filter-class>
+    <init-param>
+		<param-name>encoding</param-name>  
+		<param-value>UTF-8</param-value>  
+    </init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CharacterFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+</web-app>
