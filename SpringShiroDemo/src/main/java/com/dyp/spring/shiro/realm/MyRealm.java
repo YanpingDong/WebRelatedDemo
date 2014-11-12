@@ -1,4 +1,4 @@
-package com.dyp.spring.shrio.realm;
+package com.dyp.spring.shiro.realm;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -78,7 +78,7 @@ public class MyRealm extends AuthorizingRealm {
             log.info("已为用户[jadyer]赋予了[admin]角色和[manage]权限");  
             return simpleAuthorInfo;  
         }else if(null!=currentUsername && "xuanyu".equals(currentUsername)){  
-        	log.info("当前用户[玄玉]无授权");  
+        	log.info("当前用户[xuanyu]无授权");  
             return simpleAuthorInfo;  
         }  
         //若该方法什么都不做直接返回null的话,就会导致任何用户访问/admin/listUser.jsp时都会自动跳转到unauthorizedUrl指定的地址  

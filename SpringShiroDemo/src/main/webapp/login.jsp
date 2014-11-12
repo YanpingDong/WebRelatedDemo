@@ -6,7 +6,7 @@
 <form action="<%=request.getContextPath()%>/mydemo/login" method="POST">
 	姓名：<input type="text" name="username"/><br/>
 	密码：<input type="text" name="password"/><br/>
-	验证：<input type="text" name="verifyCode"/>
+	验证：<input type="text" name="verifyCode"/><br/>
 		 		 
 	<input type="submit" value="确认"/>
 </form>

@@ -5,4 +5,4 @@
  * @author learlee
  *
  */
-package com.dyp.spring.shrio.realm;
+package com.dyp.spring.shiro.realm;

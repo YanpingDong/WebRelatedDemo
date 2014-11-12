@@ -5,5 +5,10 @@
 管理员可访问<a href="<%=request.getContextPath()%>/admin/listUser.jsp" target="_blank">用户列表页面</a>
 <br/>
 <br/>
+管理员可访问<a href="<%=request.getContextPath()%>/permit/interface1" target="_blank">用注解来控制Controller</a>
+<br/>
+管理员可访问<a href="<%=request.getContextPath()%>/permit/interface2" target="_blank">用注解来控制非Controller</a>
+<br/>
+<br/>
 <!-- Longin -->
 <a href="<%=request.getContextPath()%>/mydemo/logout" target="_blank">Logout</a>

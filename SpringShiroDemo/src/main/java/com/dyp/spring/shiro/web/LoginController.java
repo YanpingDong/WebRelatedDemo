@@ -56,6 +56,7 @@ public class LoginController {
      */
     @RequestMapping(value="/login")  
     public String loginGet(HttpServletRequest request){  
+    	log.info("user login!!!!! get");
     	return InternalResourceViewResolver.FORWARD_URL_PREFIX + "/";  
     }
     
@@ -67,19 +68,19 @@ public class LoginController {
      */  
     @RequestMapping(value="/login", method=RequestMethod.POST)  
     public String login(HttpServletRequest request){  
-    	log.info("user login!!!!!");
+    	log.info("user login!!!!! post");
         String resultPageURL = InternalResourceViewResolver.FORWARD_URL_PREFIX + "/";  
         
         //没有配置/mydemo/login=authc的时候解开下面注释
-       /* String username = request.getParameter("username");  
+        String username = request.getParameter("username");  
         String password = request.getParameter("password");  
         //获取HttpSession中的验证码  
-        String verifyCode = (String)request.getSession().getAttribute("verifyCode");  
+        //String verifyCode = (String)request.getSession().getAttribute("verifyCode");  
         //获取用户请求表单中输入的验证码  
         String submitCode = WebUtils.getCleanParam(request, "verifyCode");  
-        System.out.println("用户[" + username + "]登录时输入的验证码为[" + submitCode + "],HttpSession中的验证码为[" + verifyCode + "]");  
+        /*System.out.println("用户[" + username + "]登录时输入的验证码为[" + submitCode + "],HttpSession中的验证码为[" + verifyCode + "]");  
 
-        if (StringUtils.isEmpty(submitCode) || !StringUtils.equals(verifyCode, submitCode.toLowerCase())){  
+        if (submitCode.isEmpty() || ! verifyCode.equalsIgnoreCase(submitCode.toLowerCase())){  
             request.setAttribute("message_login", "验证码不正确");  
             return resultPageURL;  
         }  
@@ -87,7 +88,7 @@ public class LoginController {
         {
         	 request.setAttribute("message_login", "验证码不正确");  
              return resultPageURL + "login.jsp";  
-        }
+        }*/
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);  
         token.setRememberMe(true);  
       //  System.out.println("为了验证登录用户而封装的token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));  
@@ -100,7 +101,7 @@ public class LoginController {
             System.out.println("对用户[" + username + "]进行登录验证..验证开始");  
             currentUser.login(token);  
             System.out.println("对用户[" + username + "]进行登录验证..验证通过");  
-            resultPageURL += "main";  
+            resultPageURL = "main";  
         }catch(UnknownAccountException uae){  
             System.out.println("对用户[" + username + "]进行登录验证..验证未通过,未知账户");  
             request.setAttribute("message_login", "未知账户");  
@@ -124,7 +125,7 @@ public class LoginController {
             System.out.println("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");  
         }else{  
             token.clear();  
-        }  */
+        }  
         return resultPageURL;  
 
     }  
