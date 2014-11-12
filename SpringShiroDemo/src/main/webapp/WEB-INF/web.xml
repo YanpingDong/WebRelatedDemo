@@ -6,6 +6,29 @@
 
   <display-name>spring shiro integration demo</display-name>
   
+  <!-- 激活Tomcat的defaultServlet来处理静态文件 -->
+  <!-- 或者用 WEB-INF/spring/webmvc-config.xml中<mvc:resources>的配置-->
+  <!-- <servlet-mapping>
+	<servlet-name>default</servlet-name>
+	<url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>default</servlet-name>
+	<url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>default</servlet-name>
+	<url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>default</servlet-name>
+	<url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>default</servlet-name>
+	<url-pattern>*.css</url-pattern>
+  </servlet-mapping> -->
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:META-INF/spring/applicationContext*.xml</param-value>
@@ -30,6 +53,7 @@
   </servlet-mapping>
   
   <!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
+  <!-- DelegatingFilterProxy会自动到Spring容器中查找名字为shiroFilter的bean并把filter请求交给它处理。 -->
   <filter>
     <filter-name>shiroFilter</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -38,8 +62,9 @@
         <param-value>true</param-value>
     </init-param>
   </filter>
-  <!-- Make sure any request you want accessible to Shiro is filtered. /* catches all -->
-  <!-- requests.  Usually this filter mapping is defined first (before all others) to -->
+  
+  <!-- Make sure any request you want access are filtered by Shiro . /* catches all requests-->
+  <!-- Usually this filter mapping is defined first (before all others) to -->
   <!-- ensure that Shiro works in subsequent filters in the filter chain:             -->
   <filter-mapping>
     <filter-name>shiroFilter</filter-name>
@@ -47,8 +72,8 @@
   </filter-mapping>
  
  <welcome-file-list>  
-        <welcome-file>login.jsp</welcome-file>  
-    </welcome-file-list>	
+    <welcome-file>login.jsp</welcome-file>  
+ </welcome-file-list>	
  
 	
 </web-app>

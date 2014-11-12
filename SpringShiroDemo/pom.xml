@@ -22,7 +22,7 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-    
+    <!-- spring  -->
     <dependency>
 	  <groupId>org.springframework</groupId>
 	  <artifactId>spring-webmvc</artifactId>
@@ -36,22 +36,23 @@
 	  <artifactId>slf4j-simple</artifactId>
 	  <version>1.7.5</version>
     </dependency>
+    
     <!-- Shiro SECURITY begin -->
     <dependency>
-	  <groupId>org.apache.shiro</groupId>
-	  <artifactId>shiro-core</artifactId>
-	  <version>${shiro.version}</version>
-    </dependency>  
-    <dependency>
-	  <groupId>org.apache.shiro</groupId>
-	  <artifactId>shiro-spring</artifactId>
-	  <version>${shiro.version}</version>
-    </dependency>                    
-    <dependency>
-	  <groupId>org.apache.shiro</groupId>
-	  <artifactId>shiro-web</artifactId>
-	  <version>${shiro.version}</version>
-    </dependency>    
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-core</artifactId>
+		<version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-spring</artifactId>
+		<version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-web</artifactId>
+		<version>${shiro.version}</version>
+	</dependency>
    <!--  <dependency>
 		<groupId>org.apache.shiro</groupId>
 		<artifactId>shiro-ehcache</artifactId>
