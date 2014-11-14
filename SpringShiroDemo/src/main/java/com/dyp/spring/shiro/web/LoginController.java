@@ -57,7 +57,16 @@ public class LoginController {
     @RequestMapping(value="/login")  
     public String loginGet(HttpServletRequest request){  
     	log.info("user login!!!!! get");
-    	return InternalResourceViewResolver.FORWARD_URL_PREFIX + "/";  
+    	String currentUser = (String)request.getSession().getAttribute("currentUser");
+    	if(currentUser == null || currentUser.isEmpty() || currentUser.equalsIgnoreCase("") )
+    	{
+    		return InternalResourceViewResolver.FORWARD_URL_PREFIX + "/login.jsp";  
+    	}
+    	else
+    	{
+    		return "main";
+    	}
+    	
     }
     
     /** 

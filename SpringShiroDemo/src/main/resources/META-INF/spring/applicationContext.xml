@@ -19,9 +19,11 @@
     <!-- 注解支持   @service @controller @Component @Autowired、 @ Resource 、@ PostConstruct、@ PreDestro、@PersistenceContex、@Required-->
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  
          base-package 如果多个，用“,”分隔 -->
-	<context:component-scan base-package="com.dyp.spring.shiro.service">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    <!-- 如果加上use-default-filters="false"，则要写相当包的绝对路径，并且不会递归子包中所有的类 -->     
+    <context:component-scan base-package="com.dyp.spring.shiro" >
+         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+	
 	
 	<!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->  
     <!-- Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截,Shiro对基于Spring的Web应用提供了完美的支持 -->  
@@ -30,6 +32,9 @@
         <property name="securityManager" ref="securityManager"/>  
         <!-- 要求登录时的链接(可根据项目的URL进行更换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->  
         <!-- loginUrl如果指定URL，例如/login.这会转到一个get请求 -->
+        <!-- 与filterChainDefinitions中的Login必需相同，这样才可以直接使用authc类的自动处理。 -->
+        <!-- 如果不是需手动处理，注掉filterChainDefinitions中的login部分，然后用controller中的post的
+             login处理 -->
         <property name="loginUrl" value="/mydemo/login"/>  
         <!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后的处理逻辑在LoginController里硬编码为main.jsp了) -->  
         <property name="successUrl" value="/main.jsp"/>  
@@ -46,7 +51,8 @@
         <!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->  
         <!-- anon：它对应的过滤器里面是空的,什么都没做,这里.do和.jsp后面的*表示参数,比方说login.jsp?main这种 -->  
         <property name="filterChainDefinitions">  
-            <value>  
+            <value> 
+            <!-- 符合指定条件则转去相应的URL执行。注：如果是第一次登录测会跳到successUrl设定的URL --> 
                 /mydemo/logout=logout <!-- 如果注掉这行，logout会去执行LonginController里的logout 否则会执行logout代表的shiro对象-->
                 /mydemo/login=authc <!-- 如果注掉这行，login会去执行LonginController里的login 否则会执行authc代表的shiro对象-->
                 /mydemo/getVerifyCodeImage=anon
