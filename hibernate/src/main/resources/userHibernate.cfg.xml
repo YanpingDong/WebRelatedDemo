@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	    <!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--> 
+	    <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+	    <!-- 存放位置 我这边放在了h盘下h2目录的product 会在相应位置生成一个.h2文件-->
+        <!-- <property name="connection.url">jdbc:h2:mem:test2</property> -->
+        <property name="hibernate.connection.url">jdbc:h2:tcp://localhost/mem:memdb</property>
+        <!-- 用户名 下面是密码 -->
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">123456</property>
+        <!-- 使用的数据库方言 -->
+         <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.hbm2ddl">update</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!--hibernate.hbm2ddl.auto指定由java代码生成数据库脚本,进而生成具体的表结构的具体方式   -->
+		<property name="hibernate.hbm2ddl.auto">update</property> 
+		<!-- 引入的实体 -->
+		<mapping class="com.dyp.test.hibernate.entity.User"/>
+		<mapping class="com.dyp.test.hibernate.entity.onetomany.Single"/>
+		<mapping class="com.dyp.test.hibernate.entity.onetomany.Group"/>
+		<mapping class="com.dyp.test.hibernate.entity.manytomany.Employee"/>
+		<mapping class="com.dyp.test.hibernate.entity.manytomany.Role"/>
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.dyp.test</groupId>
+  <artifactId>hibernate</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>hibernate</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hibernate.version>4.0.0.Final</hibernate.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+	  <groupId>com.h2database</groupId>
+	  <artifactId>h2</artifactId>
+	  <version>1.4.182</version>
+    </dependency>
+    
+    <dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-core</artifactId>
+	  <version>${hibernate.version}</version>
+    </dependency>
+    <!-- Hibernate O/RM implementation of the JPA specification -->
+    <dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-entitymanager</artifactId>
+	  <version>${hibernate.version}</version>
+    </dependency>
+    <!-- c3p0 Data sources that implement Connection and Statement Pooling-->
+    <dependency>
+	  <groupId>c3p0</groupId>
+	  <artifactId>c3p0</artifactId>
+	  <version>0.9.1.2</version>
+    </dependency>
+    <dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-c3p0</artifactId>
+	  <version>4.0.0.Final</version> 
+    </dependency>
+    <!-- c3p0 Data sources end-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- for quickly implement toString method -->
+    <dependency>
+	  <groupId>org.apache.commons</groupId>
+	  <artifactId>commons-lang3</artifactId>
+	  <version>3.1</version>
+    </dependency>	
+  </dependencies>
+</project>
