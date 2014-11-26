@@ -10,7 +10,7 @@
 		<properties>
 		    <!-- uncomment to use c3p0 connection pool -->
 		    <!-- <property name="hibernate.connection.provider_class"
-                      value="org.hibernate.connection.C3P0ConnectionProvider"/> -->
+                      value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider"/> -->
 			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 			<property name="hibernate.connection.username" value="root" />

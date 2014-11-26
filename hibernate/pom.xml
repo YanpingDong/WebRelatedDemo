@@ -13,6 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hibernate.version>4.0.0.Final</hibernate.version>
+    <spring.version>3.1.4.RELEASE</spring.version>
   </properties>
 
   <dependencies>
@@ -27,12 +28,14 @@
 	  <artifactId>hibernate-core</artifactId>
 	  <version>${hibernate.version}</version>
     </dependency>
+    
     <!-- Hibernate O/RM implementation of the JPA specification -->
     <dependency>
 	  <groupId>org.hibernate</groupId>
 	  <artifactId>hibernate-entitymanager</artifactId>
 	  <version>${hibernate.version}</version>
     </dependency>
+    
     <!-- c3p0 Data sources that implement Connection and Statement Pooling-->
     <dependency>
 	  <groupId>c3p0</groupId>
@@ -45,6 +48,28 @@
 	  <version>4.0.0.Final</version> 
     </dependency>
     <!-- c3p0 Data sources end-->
+    
+    <!-- spring jpa -->
+    <dependency>
+	  <groupId>org.springframework.data</groupId>
+	  <artifactId>spring-data-jpa</artifactId>
+	  <version>1.4.1.RELEASE</version>
+    </dependency>
+    
+    <!-- spring orm -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+    
+    <!-- no interface to create DAO when run proxy-target-class="true", so need this Lib -->
+    <dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib</artifactId>
+		<version>2.2.2</version>
+    </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -57,6 +82,6 @@
 	  <groupId>org.apache.commons</groupId>
 	  <artifactId>commons-lang3</artifactId>
 	  <version>3.1</version>
-    </dependency>	
+    </dependency>
   </dependencies>
 </project>

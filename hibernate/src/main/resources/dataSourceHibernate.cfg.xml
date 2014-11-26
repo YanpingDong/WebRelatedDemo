@@ -23,7 +23,7 @@
 		
 		<!-- C3P0连接池设定-->
 		<property name="hibernate.connection.provider_class">
-		org.hibernate.connection.C3P0ConnectionProvider
+		    org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider
 		</property>
 		<property name="hibernate.c3p0.max_size">20</property> 
 		<property name="hibernate.c3p0.min_size">5</property> 	
