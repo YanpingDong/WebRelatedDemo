@@ -10,6 +10,15 @@ import org.junit.Test;
 
 public class PersonTest {
 
+	/**
+	 * If use spring framwork the following code don't need to write again
+	 * <code> EntityManagerFactory factory = Persistence.createEntityManagerFactory("myJPA");
+	 * 	      EntityManager em = factory.createEntityManager(); </code> 
+	 * the transaction control operation will be inject by AOP, so the following code 
+	 * don't need to write
+	 * <code> em.getTransaction().begin();
+	 *        em.getTransaction().commit(); </code>
+	 */
 	@Test
 	public void test() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myJPA");
