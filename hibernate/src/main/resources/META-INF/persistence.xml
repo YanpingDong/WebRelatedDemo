@@ -7,6 +7,9 @@
 	<persistence-unit name="myJPA" transaction-type="RESOURCE_LOCAL">
 	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
 	    <class>com.dyp.test.hibernate.jpa.entity.Person</class>
+	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Dog</class>
+	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Cat</class>
+	    <class>com.dyp.test.hibernate.jpa.superclass.entity.SubEntity</class>
 		<properties>
 		    <!-- uncomment to use c3p0 connection pool -->
 		    <!-- <property name="hibernate.connection.provider_class"
