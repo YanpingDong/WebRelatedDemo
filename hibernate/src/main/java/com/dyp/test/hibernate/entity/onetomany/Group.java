@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 /*
  * For cassandra:
  * CREATE TABLE pbosite.one_group(id int,  name text,PRIMARY KEY(id))WITH COMPACT STORAGE;
@@ -52,4 +55,9 @@ public class Group {
 	  this.name = name;  
 	 }  
 	 
+	 @Override
+	public String toString()
+	{
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 }

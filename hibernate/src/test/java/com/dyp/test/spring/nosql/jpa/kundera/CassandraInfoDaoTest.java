@@ -46,6 +46,7 @@ public class CassandraInfoDaoTest {
         infoDao.saveS(user1);
         infoDao.saveS(user);
         
+        infoDao.getGroup();
 	}
 
 }

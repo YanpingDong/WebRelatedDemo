@@ -10,6 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /*
  * For cassandra:
  * CREATE TABLE pbosite.many_single(id int,  name text, self_define_groupid text,PRIMARY KEY(id))WITH COMPACT STORAGE;
@@ -57,4 +60,10 @@ public class Single {
 	 public void setName(String name) {  
 	  this.name = name;  
 	 }  
+	 
+	 @Override
+	public String toString()
+	{
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
 }

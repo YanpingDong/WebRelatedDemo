@@ -60,4 +60,16 @@ public class CassandraInfoDao {
 		   for(CassandraInfo info : result)
 			   System.out.println(info);
 	   }
+	   
+	   public void getGroup()
+	   {
+		   Group group = em.find(Group.class, 1);
+		   System.out.println(group);
+		   
+		   Query query= em.createQuery("select g from Group g where g.id=:id");
+		   query.setParameter("id", 1);
+		   List<Group> result = query.getResultList();
+		   for(Group info : result)
+			   System.out.println(info);
+	   }
 }
