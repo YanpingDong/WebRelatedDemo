@@ -14,9 +14,18 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hibernate.version>4.0.0.Final</hibernate.version>
     <spring.version>3.1.4.RELEASE</spring.version>
+    <kundera.version>2.14</kundera.version>
   </properties>
-
+  
+  
   <dependencies>
+	  <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-instrument</artifactId>
+		<version>3.1.4.RELEASE</version>
+	  </dependency>
+    
+    <!-- h2 JDBC driver -->
     <dependency>
 	  <groupId>com.h2database</groupId>
 	  <artifactId>h2</artifactId>
@@ -28,7 +37,6 @@
 	  <artifactId>hibernate-core</artifactId>
 	  <version>${hibernate.version}</version>
     </dependency>
-    
     <!-- Hibernate O/RM implementation of the JPA specification -->
     <dependency>
 	  <groupId>org.hibernate</groupId>
@@ -45,7 +53,7 @@
     <dependency>
 	  <groupId>org.hibernate</groupId>
 	  <artifactId>hibernate-c3p0</artifactId>
-	  <version>4.0.0.Final</version> 
+	  <version>${hibernate.version}</version> 
     </dependency>
     <!-- c3p0 Data sources end-->
     
@@ -55,13 +63,24 @@
 	  <artifactId>spring-data-jpa</artifactId>
 	  <version>1.4.1.RELEASE</version>
     </dependency>
-    
     <!-- spring orm -->
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-orm</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
+    
+    <!-- NoSQL JPA implement -->
+    <dependency>
+		<groupId>com.impetus.kundera.core</groupId>
+		<artifactId>kundera-core</artifactId>
+		<version>${kundera.version}</version>
+    </dependency>
+    <dependency>
+	  <groupId>com.impetus.kundera.client</groupId>
+	  <artifactId>kundera-cassandra</artifactId>
+	  <version>${kundera.version}</version>
+    </dependency>
     
     <!-- no interface to create DAO when run proxy-target-class="true", so need this Lib -->
     <dependency>
@@ -83,5 +102,6 @@
 	  <artifactId>commons-lang3</artifactId>
 	  <version>3.1</version>
     </dependency>
+    
   </dependencies>
 </project>
