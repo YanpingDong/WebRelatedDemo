@@ -14,7 +14,12 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd"
 	default-lazy-init="true">
-
+   
+    <!-- NOTE: use this way Don't Need to config hibernate.cgf.xml -->
+    <!-- NOTE: use this way Don't Need to config hibernate.cgf.xml -->
+    <!-- NOTE: use this way Don't Need to config hibernate.cgf.xml -->
+    <!-- NOTE: use this way Don't Need to config hibernate.cgf.xml -->
+    
 	<description>Spring Hibernate4 integration context</description>
 	
 	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
