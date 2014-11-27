@@ -10,6 +10,9 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dyp.test.hibernate.entity.onetomany.Group;
+import com.dyp.test.hibernate.entity.onetomany.Single;
+
 @Repository(value="cassandraInfoDao")
 public class CassandraInfoDao {
 	/*
@@ -28,6 +31,18 @@ public class CassandraInfoDao {
 	   public void save(CassandraInfo cassandraInfo)
 	   {
 		   em.persist(cassandraInfo);
+	   }
+	   
+	   @Transactional 
+	   public void saveG(Group group)
+	   {
+		   em.persist(group);
+	   }
+	   
+	   @Transactional 
+	   public void saveS(Single single)
+	   {
+		   em.persist(single);
 	   }
 	   
 	   @SuppressWarnings("unchecked")

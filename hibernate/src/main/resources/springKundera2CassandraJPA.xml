@@ -22,16 +22,6 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<!-- entityManagerFactory 有以下2种方式提供 -->  
-    <!-- class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->  
-    <!-- class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->  
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
-        <property name="persistenceUnitName" value="myCassandra" />
-	    <!-- <property name="loadTimeWeaver">
-	        <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
-	    </property> -->
-    </bean>  
-    
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor">
 	</bean>
 	
@@ -39,17 +29,28 @@
 	class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
 	    <property name="persistenceXmlLocations">
 	        <list>
-	            <value>META-INF/kunderaPersistence4cassandra.xml</value>
+	            <!-- <value>META-INF/custom-persistence.xml</value> -->
+	            <value>META-INF/persistence.xml</value>
 	        </list>
 	    </property>
 	</bean>
     
-    <!-- 定义事务 -->
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  
-        <property name="entityManagerFactory" ref="entityManagerFactory" />  
+    <!-- entityManagerFactory 有以下2种方式提供 -->  
+    <!-- class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->  
+    <!-- class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->  
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
+        <property name="persistenceUnitName" value="myCassandra" />
+        <!-- <property name="persistenceUnitManager" ref="defaultPersistenceUnitManager"/> -->
+	    <property name="loadTimeWeaver">
+	        <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+	    </property>
     </bean>  
+    <!-- 定义事务 -->
+    <!-- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  
+        <property name="entityManagerFactory" ref="entityManagerFactory" />  
+    </bean>   -->
 	
 	<!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务  -->
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+ -->
 </beans>

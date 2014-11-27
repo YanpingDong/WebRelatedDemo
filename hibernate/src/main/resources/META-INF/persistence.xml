@@ -24,6 +24,8 @@
 	<persistence-unit name="myCassandra" >
 	    <provider>com.impetus.kundera.KunderaPersistence</provider>
 	    <class>com.dyp.test.spring.nosql.jpa.kundera.entity.CassandraInfo</class>
+	    <class>com.dyp.test.hibernate.entity.onetomany.Group</class>
+	    <class>com.dyp.test.hibernate.entity.onetomany.Single</class>
 	    <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="kundera.nodes" value="10.120.137.124" />

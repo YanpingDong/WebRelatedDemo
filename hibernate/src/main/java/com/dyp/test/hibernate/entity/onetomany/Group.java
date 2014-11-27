@@ -20,7 +20,7 @@ public class Group {
  	 private int id;  
 	 private String name;  
 	 
-	 @OneToMany(mappedBy = "group", cascade = { CascadeType.ALL }/*, targetEntity=Role.class*/)  
+	 @OneToMany(mappedBy = "group", cascade = { CascadeType.ALL }/*, targetEntity=Single.class*/)  
 	 @OrderBy("name ASC") 
 	 private List<Single> singles = new ArrayList<Single>();  
 	  
