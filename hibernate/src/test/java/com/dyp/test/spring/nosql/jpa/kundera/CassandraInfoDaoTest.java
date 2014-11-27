@@ -10,7 +10,7 @@ import com.dyp.test.spring.nosql.jpa.kundera.entity.CassandraInfoDao;
 /**
  * before runing, use the following command to create table in Cassandra DB
  * <code>CREATE TABLE pbosite.cassandra_info(id int,  name text,PRIMARY KEY(id))WITH COMPACT STORAGE;</code>
- *
+ * for the detail : https://github.com/impetus-opensource/Kundera
  */
 public class CassandraInfoDaoTest {
 
