@@ -10,6 +10,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ * For cassandra:
+ * CREATE TABLE pbosite.many_single(id int,  name text, self_define_groupid text,PRIMARY KEY(id))WITH COMPACT STORAGE;
+ */
 @Entity  
 @Table(name = "many_single") 
 public class Single {

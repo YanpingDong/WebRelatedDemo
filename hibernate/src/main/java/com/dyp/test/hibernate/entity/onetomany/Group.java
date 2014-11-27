@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-
+/*
+ * For cassandra:
+ * CREATE TABLE pbosite.one_group(id int,  name text,PRIMARY KEY(id))WITH COMPACT STORAGE;
+ */
 @Entity  
 @Table(name = "one_group") 
 public class Group {
