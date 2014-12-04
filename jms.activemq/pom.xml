@@ -25,32 +25,33 @@
     </dependency>
     
     <dependency>
-	<groupId>org.apache.activemq</groupId>
-	<artifactId>activemq-core</artifactId>
-	<version>5.7.0</version>
+	  <groupId>org.apache.activemq</groupId>
+	  <artifactId>activemq-core</artifactId>
+	  <version>5.7.0</version>
 	</dependency>
 
-        
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>jsr250-api</artifactId>
-            <version>1.0</version>
-        </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jms</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- for @RunWith @ContextConfiguration -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- for javax.annotation.Resource and so on -->
+    <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>jsr250-api</artifactId>
+        <version>1.0</version>
+    </dependency>
 
   </dependencies>
 </project>

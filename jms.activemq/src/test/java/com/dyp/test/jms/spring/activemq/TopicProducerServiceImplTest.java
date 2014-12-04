@@ -1,8 +1,6 @@
-package com.dyp.test.jms.activemq;
+package com.dyp.test.jms.spring.activemq;
 
 import static org.junit.Assert.*;
-
-import org.junit.Test;
 
 import javax.jms.Destination;
 
@@ -13,16 +11,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.dyp.test.jms.spring.activemq.ProducerServiceImpl;
- 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/SpringContext.xml")
-public class ProducerConsumerTest {
- 
-    @Autowired
+public class TopicProducerServiceImplTest {
+
+	@Autowired
     private ProducerServiceImpl producerService;
     @Autowired
-    @Qualifier("queueDestination")
+    @Qualifier("topicDestination")
     private Destination destination;
     
     @Test
@@ -31,6 +27,5 @@ public class ProducerConsumerTest {
             producerService.sendMessage(destination, "你好，生产者！这是消息：" + (i+1));
         }
     }
-    
-}
 
+}
