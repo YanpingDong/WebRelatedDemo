@@ -12,6 +12,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * before runing, use the following command to create table in Cassandra DB
+ * 
+ * <code> CREATE KEYSPACE pbosite WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};</code>
  * <code>CREATE TABLE pbosite.cassandra_info(id int,  name text,PRIMARY KEY(id))WITH COMPACT STORAGE;</code>
  * 
  */

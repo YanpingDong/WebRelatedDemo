@@ -21,6 +21,7 @@ public class CassandraInfoDaoTest {
 		ClassPathXmlApplicationContext ctx = 
 				 new ClassPathXmlApplicationContext("springKundera2CassandraJPA.xml"); 
 		CassandraInfoDao infoDao = ctx.getBean("cassandraInfoDao", CassandraInfoDao.class);
+		
 		CassandraInfo info = new CassandraInfo();
 		info.setId(5); 
         info.setName("spring_name_wehere");

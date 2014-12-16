@@ -31,7 +31,7 @@
 	    <class>com.dyp.test.hibernate.entity.onetomany.Single</class>
 	    <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="kundera.nodes" value="10.120.137.124" />
+            <property name="kundera.nodes" value="10.120.137.118" />
             <property name="kundera.port" value="9160" />
             <property name="kundera.keyspace" value="pbosite" />
             <property name="kundera.client" value="thrift" />

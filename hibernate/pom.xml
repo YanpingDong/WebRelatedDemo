@@ -32,17 +32,17 @@
 	  <version>1.4.182</version>
     </dependency>
     
-    <!-- <dependency>
+    <dependency>
 	  <groupId>org.hibernate</groupId>
 	  <artifactId>hibernate-core</artifactId>
 	  <version>${hibernate.version}</version>
-    </dependency> -->
+    </dependency>
     <!-- Hibernate O/RM implementation of the JPA specification -->
-    <!-- <dependency>
+    <dependency>
 	  <groupId>org.hibernate</groupId>
 	  <artifactId>hibernate-entitymanager</artifactId>
 	  <version>${hibernate.version}</version>
-    </dependency> -->
+    </dependency>
     
     <!-- c3p0 Data sources that implement Connection and Statement Pooling-->
     <dependency>
@@ -72,9 +72,9 @@
     
     <!-- NoSQL JPA implement -->
     <dependency>
-		<groupId>com.impetus.kundera.core</groupId>
-		<artifactId>kundera-core</artifactId>
-		<version>${kundera.version}</version>
+	  <groupId>com.impetus.kundera.core</groupId>
+	  <artifactId>kundera-core</artifactId>
+	  <version>${kundera.version}</version>
     </dependency>
     <dependency>
 	  <groupId>com.impetus.kundera.client</groupId>

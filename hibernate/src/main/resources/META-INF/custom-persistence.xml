@@ -10,15 +10,15 @@
 	    <class>com.dyp.test.spring.nosql.jpa.kundera.entity.CassandraInfo</class>
 	    <class>com.dyp.test.hibernate.entity.onetomany.Group</class>
 	    <class>com.dyp.test.hibernate.entity.onetomany.Single</class>
-	    <!-- <exclude-unlisted-classes>true</exclude-unlisted-classes>
+	    <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="kundera.nodes" value="10.120.137.124" />
+            <property name="kundera.nodes" value="10.120.137.118" />
             <property name="kundera.port" value="9160" />
             <property name="kundera.keyspace" value="pbosite" />
             <property name="kundera.client" value="thrift" />
             <property name="kundera.client.lookup.class"
                 value="com.impetus.client.cassandra.thrift.ThriftClientFactory" />
-        </properties> -->
+        </properties>
 	</persistence-unit>
 
 </persistence>
