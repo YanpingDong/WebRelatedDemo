@@ -1,22 +1,18 @@
 ###############
 #    file     #
 ###############
-*.class
+
 *.bak
 *.log
 *.prefs
 .classpath
 .project
 
+!*.class
+
 ###############
 #    folder   #
-/*/.settings/
+/.settings/
 /target/
-/bin/
 
-!/HelloWeb/
-!/jms.activemq/
-!/sitemesh/
-!/SpringMVCHello/
-!/SpringShiroDemo/
-!/bookstore/
+!/bin/
