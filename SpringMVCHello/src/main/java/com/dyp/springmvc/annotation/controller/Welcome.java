@@ -1,5 +1,7 @@
 package com.dyp.springmvc.annotation.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,5 +17,10 @@ public class Welcome {
 	    headers.add("Content-Type", "application/json");
 	    return "welcome";
 	}
-
+	
+	@RequestMapping("/404/error")
+	public void return404ErrorPage(HttpServletResponse response)
+	{
+		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+	}
 }
