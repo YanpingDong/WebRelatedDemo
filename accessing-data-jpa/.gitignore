@@ -1,0 +1,18 @@
+###############
+#    file     #
+###############
+
+*.bak
+*.log
+*.prefs
+.classpath
+.project
+
+!*.class
+
+###############
+#    folder   #
+/.settings/
+/target/
+
+!/bin/

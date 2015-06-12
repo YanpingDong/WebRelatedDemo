@@ -23,4 +23,5 @@ public class Welcome {
 	{
 		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 	}
+
 }

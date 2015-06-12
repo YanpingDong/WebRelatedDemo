@@ -1,0 +1,2 @@
+web.xml 在这个工程中可以不需要。
+web.xml相关配置在com.dyp.java.based.mvc.config.WebAppInitializer己完成相关配置
