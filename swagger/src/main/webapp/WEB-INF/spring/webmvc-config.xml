@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+    
+    <!-- <context:property-placeholder ignore-unresolvable="true" location="classpath*:spring/*.properties" /> -->
+    
+    <context:component-scan base-package="com.dyp.api" />
+    
+    <mvc:default-servlet-handler/>   
+    
+    <!-- Turns on support for mapping requests to Spring MVC @Controller methods
+         Also registers default Formatters and Validators for useing across all @Controllers -->
+    <mvc:annotation-driven/>
+              
+    <bean class="com.mangofactory.swagger.models.dto.ApiInfo">
+        <constructor-arg name="title" value="bugkillers-back API"/>
+        <constructor-arg name="description" value="bugkillers 后台API文档"/>
+        <constructor-arg name="termsOfServiceUrl" value="http://127.0.0.1:8080/api-docs"/>
+        <constructor-arg name="contact" value="dyp@tcl.com"/>
+        <constructor-arg name="license" value="My License"/>
+        <constructor-arg name="licenseUrl" value="My Apps API License URL"/>
+    </bean>
+    
+    <bean id="springSwaggerConfig" class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" /> 
+ 
+    <bean class="com.dyp.config.MySwaggerConfig"/>
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+         <property name="prefix">
+             <value>/WEB-INF/views/</value>
+         </property>
+         <property name="suffix">
+             <value>.jsp</value>
+         </property>
+     </bean>
+ 
+    
+</beans>
