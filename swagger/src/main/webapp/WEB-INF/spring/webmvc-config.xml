@@ -21,8 +21,8 @@
     <mvc:annotation-driven/>
               
     <bean class="com.mangofactory.swagger.models.dto.ApiInfo">
-        <constructor-arg name="title" value="bugkillers-back API"/>
-        <constructor-arg name="description" value="bugkillers 后台API文档"/>
+        <constructor-arg name="title" value="DYP TEST API"/>
+        <constructor-arg name="description" value="DYP RESTfull API doc"/>
         <constructor-arg name="termsOfServiceUrl" value="http://127.0.0.1:8080/api-docs"/>
         <constructor-arg name="contact" value="dyp@tcl.com"/>
         <constructor-arg name="license" value="My License"/>
