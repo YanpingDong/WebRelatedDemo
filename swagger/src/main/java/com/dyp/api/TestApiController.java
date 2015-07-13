@@ -18,7 +18,7 @@ public class TestApiController {
      * 注册用户
      * @param user
      */
-	@ApiOperation(value = "xxxxx", httpMethod = "GET xxx", notes = "add user  xxx")
+	@ApiOperation(value = "xxxxx", httpMethod = "GET xxx", notes = "add user ")
     @ResponseBody
     @RequestMapping( method = RequestMethod.GET)
     public ResponseEntity<?> regist(String name) {
