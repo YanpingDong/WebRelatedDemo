@@ -12,7 +12,8 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("cat")
 public class Cat extends Pet {
-	 private String HairBall;
+	private static final long serialVersionUID = 2398505158986426351L;
+	private String HairBall;
 	
 	 public String getHairBall() {
 	  return HairBall;

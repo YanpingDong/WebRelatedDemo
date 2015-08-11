@@ -25,19 +25,20 @@ public class InheritanceTest {
 	public void test() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myJPA");
 		EntityManager em = factory.createEntityManager();  
+		
 		em.getTransaction().begin();  
         Dog dog = new Dog();
         dog.setName("dogA");
         dog.setTrick("trick");
         dog.setWeight(8.0);
         em.persist(dog); //持久化实体  
-        
         Cat cat = new Cat();
         cat.setHairBall("hairBall");
         cat.setName("catA");
         cat.setWeight(5.0);
         em.persist(cat); //持久化实体  
         em.getTransaction().commit();  
+        
         em.close();  
         factory.close();  
 	}

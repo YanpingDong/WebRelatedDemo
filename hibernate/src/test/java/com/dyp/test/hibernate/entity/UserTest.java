@@ -13,7 +13,7 @@ import org.junit.Test;
 public class UserTest {
 
 	@Test
-	public void test() {
+	public void testOnH2() {
 		Configuration config = new Configuration(); 
 		config.configure("userHibernate.cfg.xml");
 		/*config.configure("dataSourceHibernate.cfg.xml");	*/

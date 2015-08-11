@@ -12,14 +12,15 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(discriminatorType=DiscriminatorType.STRING)
 @DiscriminatorValue("dog")
 public class Dog extends Pet {
- private String trick;
+	private static final long serialVersionUID = 1111198642878094081L;
+    private String trick;
 
- public String getTrick() {
-  return trick;
- }
-
- public void setTrick(String trick) {
-  this.trick = trick;
- }
+	 public String getTrick() {
+	  return trick;
+	 }
+	
+	 public void setTrick(String trick) {
+	  this.trick = trick;
+	 }
 
 }
