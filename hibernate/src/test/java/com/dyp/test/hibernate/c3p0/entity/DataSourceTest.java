@@ -34,7 +34,7 @@ public class DataSourceTest {
 	}
 	
 	@Test
-	public void testDruid() {
+	public void testDruid() { 
 		Configuration configuration = new Configuration(); 
 		configuration.configure("DruidDatasourceHibernate.cfg.xml"); 
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry(); 
@@ -42,7 +42,7 @@ public class DataSourceTest {
         Session session = factory.openSession();  
         Transaction tran = session.beginTransaction();  
         DataSource dataSource = new DataSource();
-        dataSource.setName("data_source_name113");
+        dataSource.setName("data_source_name23");
         session.save(dataSource);  
         tran.commit();  
         DataSource dataSourceInfo = (DataSource) session.get(DataSource.class, 1);

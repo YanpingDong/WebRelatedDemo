@@ -4,36 +4,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
 	                    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="myJPA" transaction-type="RESOURCE_LOCAL">
-	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-	    <class>com.dyp.test.hibernate.jpa.entity.Person</class>
-	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Dog</class>
-	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Cat</class>
-	    <class>com.dyp.test.hibernate.jpa.superclass.entity.SubEntity</class>
-		<properties>
-		    <!-- uncomment to use c3p0 connection pool -->
-		    <!-- <property name="hibernate.connection.provider_class"
-                      value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider"/> -->
-			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-			<property name="hibernate.connection.username" value="root" />
-			<property name="hibernate.connection.password" value="123456" />
-			<property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost/mem:memdb" />
-			<property name="hibernate.max_fetch_depth" value="3" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-		</properties>	
-	</persistence-unit>
 	
 	<persistence-unit name="mySQL" transaction-type="RESOURCE_LOCAL">
-	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 	    <class>com.dyp.test.hibernate.jpa.entity.Person</class>
 	    <class>com.dyp.test.hibernate.entity.onetomany.Single</class>
 	    <class>com.dyp.test.hibernate.entity.onetomany.Group</class>
-		<properties>
+	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Dog</class>
+	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Cat</class>
+		<properties> 
 		    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.max_fetch_depth" value="3" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<!-- use connection pool do connect so comment, when uncomment the following  configuration have to comment the pool configuration-->
+			<!-- use C3P0 connection pool do connect so comment, when uncomment the following  configuration have to comment the pool configuration-->
 			<!--<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="123456" />
@@ -42,6 +25,7 @@
 		    <!-- <property name="hibernate.connection.provider_class"
                       value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider"/> -->
             
+            <!-- use alibaba druid connection pool -->
             <property name="hibernate.connection.provider_class" value="com.alibaba.druid.support.hibernate.DruidConnectionProvider"/>	
             <!-- Druid pool configuration -->
             <property name="initialSize" value="1"/> 
@@ -62,7 +46,25 @@
 			
 		</properties>	
 	</persistence-unit>
-	
+	<persistence-unit name="myJPA" transaction-type="RESOURCE_LOCAL">
+	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+	    <class>com.dyp.test.hibernate.jpa.entity.Person</class>
+	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Dog</class>
+	    <class>com.dyp.test.hibernate.jpa.inheritance.entity.Cat</class>
+	    <class>com.dyp.test.hibernate.jpa.superclass.entity.SubEntity</class>
+		<properties>
+		    <!-- uncomment to use c3p0 connection pool -->
+		    <property name="hibernate.connection.provider_class"
+                      value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider"/>
+			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="123456" />
+			<property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost/mem:memdb" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>	
+	</persistence-unit>
 	<persistence-unit name="myCassandra" >
 	    <provider>com.impetus.kundera.KunderaPersistence</provider>
 	    <class>com.dyp.test.spring.nosql.jpa.kundera.entity.CassandraInfo</class>

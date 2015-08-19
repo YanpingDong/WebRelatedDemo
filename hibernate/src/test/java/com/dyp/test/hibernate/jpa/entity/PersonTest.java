@@ -36,7 +36,7 @@ public class PersonTest {
 	
 	@Test
 	public void testInMySQL()
-	{
+	{ 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mySQL");
 		EntityManager em = factory.createEntityManager();  
 		

@@ -23,7 +23,7 @@ public class InheritanceTest {
 
 	@Test
 	public void test() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myJPA");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mySQL");
 		EntityManager em = factory.createEntityManager();  
 		
 		em.getTransaction().begin();  
