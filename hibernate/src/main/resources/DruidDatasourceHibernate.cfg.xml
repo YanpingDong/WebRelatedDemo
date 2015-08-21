@@ -49,5 +49,7 @@
 		
 		<!-- 引入的实体 -->
 		<mapping class="com.dyp.test.hibernate.c3p0.entity.DataSource"/>
+		<mapping class="com.dyp.test.hibernate.entity.onetomany.AudioGroupInfo"/>
+		<mapping class="com.dyp.test.hibernate.entity.onetomany.AudioInfo"/>
 	</session-factory>
 </hibernate-configuration>

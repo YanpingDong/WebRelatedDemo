@@ -2,6 +2,8 @@ package com.dyp.test.hibernate.entity.onetomany;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -65,5 +67,31 @@ public class GroupTest {
         em.getTransaction().commit();  
         em.close();  
         factory.close();  
+	}
+	
+	@Test
+	public void testAudioInfoAndGroupDAOMySQL()
+	{
+		AudioInfoDAO aid = new AudioInfoDAO();
+		AudioGroupInfo agi = new AudioGroupInfo();
+        AudioInfo ai = new AudioInfo();
+        agi.setCreateTime(new Date());
+        agi.setTitleName("TestTitleName");
+        agi.setTitleRid("testTitleRid");
+        
+        ai.setAudioGroupInfo(agi);
+        ai.setCreateTime(new Date());
+        ai.setDescription("xxxxxxxxxxxxxxx");
+        ai.setInputPath("inputPath");
+        ai.setMessageType("messageType");
+        ai.setName("name");
+        ai.setRid("rid");
+        ai.setS3StoragePath("s3StoragePath");
+        ai.setVideoDuration(10);
+        ai.setType("type");
+        ai.setAccessNum(0);
+        //aid.save(ai);
+        AudioGroupInfoDAO agid = new AudioGroupInfoDAO();
+        agid.cascadeDel("testTitleRid");
 	}
 }
