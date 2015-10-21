@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<!-- 此文件用来自动生成client,entity，mapper文件，使用方法：1.eclipse安装mybatis generator插件；2.配置好该文件内容；3.右键点击该文件，选择：Generate mybatis/ibatis artifacts
+ -->
+<generatorConfiguration>
+	<!-- mysql连接驱动路径 -->
+	<classPathEntry
+		location="C:\Users\hzy\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />
+	<context id="context1">
+		<!-- 下面的配置去掉了无用的注释和时间戳，可以去掉试下就知道了 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<!-- 连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/mytest" userId="root"
+			password="123456" />
+		<!-- entity位置 -->
+		<javaModelGenerator targetPackage="com.mybatis.entity"
+			targetProject="mybatisDemo" />
+		<!-- mapper位置 -->
+		<sqlMapGenerator targetPackage="com.mybatis.mapper"
+			targetProject="mybatisDemo" />
+		<!-- client位置（相当于dao） -->
+		<javaClientGenerator targetPackage="com.mybatis.client"
+			targetProject="mybatisDemo" type="XMLMAPPER" />
+
+		<!-- 下面的配置的enable*ByExample=false表示不生成example entity，因为example用处不大，单表查询有优势，但是关联表查询不方便 -->
+		<table tableName="test_user" schema="mytest"
+		    domainObjectName="User"> <!-- enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false"> -->
+			<property name="useActualColumnNames" value="true" />
+		</table>
+	</context>
+</generatorConfiguration>
