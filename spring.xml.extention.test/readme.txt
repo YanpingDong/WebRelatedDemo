@@ -1,13 +1,13 @@
-Spring¿ò¼Ü´Ó2.0°æ±¾¿ªÊ¼£¬Ìá¹©ÁË»ùÓÚSchema·ç¸ñµÄXMLÀ©Õ¹»úÖÆ£¬ÔÊĞí¿ª·¢ÕßÀ©Õ¹×î»ù±¾µÄspringÅäÖÃÎÄ¼ş£¨Ò»°ãÊÇclasspathÏÂµÄspring.xml£©¡£ÊÔÏëÒ»ÏÂ£¬Èç¹ûÎÒÃÇÖ±½ÓÔÚspring.xmlÖĞ¼ÓÈëÒ»¸ö×Ô¶¨Òå±êÇ©<mytag id="aty"></matag>£¬»á·¢ÉúÊ²Ã´ÄØ£¿spring¿ò¼ÜÆô¶¯µÄÊ±ºò»á±¨´í£¬ÒòÎªspring¸ù±¾²»ÈÏÊ¶ÎÒÃÇ×Ô¶¨ÒåµÄ<mytag>£¬ÕâÑù¶Ôspring.xmlµÄĞ£Ñé¾Í»áÊ§°Ü£¬×îÖÕ½á¹û¾ÍÊÇ¿ò¼Ü²»ÄÜÆô¶¯¡£ÓĞÊ²Ã´·½·¨£¬ÄÜ¹»ÈÃspringÈÏÊ¶²¢¼ÓÔØ½âÎöÎÒÃÇ×Ô¶¨ÒåµÄ<mytag>ÄØ£¿Õâ¾ÍÊÇspringÌá¹©µÄxmlÀ©Õ¹»úÖÆ¡£ÎÒÃÇ¿ÉÒÔÔÚspring.xmlÖĞ¼ÓÈë×Ô¼ºµÄ±êÇ©£¬Ö®ºóspring»á°ïÎÒÃÇ½âÎö²¢ÄÉÈë×Ô¼ºµÄ¹ÜÀí·¶Î§ÄÚ£¬ÕâÒ²¾ÍÊÇËµÎÒÃÇÀ©Õ¹ÁËspringµÄ¹¦ÄÜ¡£
-ÏÖÔÚÎÒÃÇÀ´¿´ÏÂÔõÃ´ÊµÏÖÕâ¸ö¹¦ÄÜ£¬¿ÉÒÔ²Î¿¼spring°ïÖúÎÄµµÖĞµÄextensible-xml.html¡£ÎÒÃÇÖªµÀÈç¹ûÔÚĞèÒªÔÚspring.xmlÖĞÅäÖÃÊı¾İÔ´£¬ĞèÒª½øĞĞÈçÏÂµÄÅäÖÃ£º
+ï»¿Springæ¡†æ¶ä»2.0ç‰ˆæœ¬å¼€å§‹ï¼Œæä¾›äº†åŸºäºSchemaé£æ ¼çš„XMLæ‰©å±•æœºåˆ¶ï¼Œå…è®¸å¼€å‘è€…æ‰©å±•æœ€åŸºæœ¬çš„springé…ç½®æ–‡ä»¶ï¼ˆä¸€èˆ¬æ˜¯classpathä¸‹çš„spring.xmlï¼‰ã€‚è¯•æƒ³ä¸€ä¸‹ï¼Œå¦‚æœæˆ‘ä»¬ç›´æ¥åœ¨spring.xmlä¸­åŠ å…¥ä¸€ä¸ªè‡ªå®šä¹‰æ ‡ç­¾<mytag id="aty"></matag>ï¼Œä¼šå‘ç”Ÿä»€ä¹ˆå‘¢ï¼Ÿspringæ¡†æ¶å¯åŠ¨çš„æ—¶å€™ä¼šæŠ¥é”™ï¼Œå› ä¸ºspringæ ¹æœ¬ä¸è®¤è¯†æˆ‘ä»¬è‡ªå®šä¹‰çš„<mytag>ï¼Œè¿™æ ·å¯¹spring.xmlçš„æ ¡éªŒå°±ä¼šå¤±è´¥ï¼Œæœ€ç»ˆç»“æœå°±æ˜¯æ¡†æ¶ä¸èƒ½å¯åŠ¨ã€‚æœ‰ä»€ä¹ˆæ–¹æ³•ï¼Œèƒ½å¤Ÿè®©springè®¤è¯†å¹¶åŠ è½½è§£ææˆ‘ä»¬è‡ªå®šä¹‰çš„<mytag>å‘¢ï¼Ÿè¿™å°±æ˜¯springæä¾›çš„xmlæ‰©å±•æœºåˆ¶ã€‚æˆ‘ä»¬å¯ä»¥åœ¨spring.xmlä¸­åŠ å…¥è‡ªå·±çš„æ ‡ç­¾ï¼Œä¹‹åspringä¼šå¸®æˆ‘ä»¬è§£æå¹¶çº³å…¥è‡ªå·±çš„ç®¡ç†èŒƒå›´å†…ï¼Œè¿™ä¹Ÿå°±æ˜¯è¯´æˆ‘ä»¬æ‰©å±•äº†springçš„åŠŸèƒ½ã€‚
+ç°åœ¨æˆ‘ä»¬æ¥çœ‹ä¸‹æ€ä¹ˆå®ç°è¿™ä¸ªåŠŸèƒ½ï¼Œå¯ä»¥å‚è€ƒspringå¸®åŠ©æ–‡æ¡£ä¸­çš„extensible-xml.htmlã€‚æˆ‘ä»¬çŸ¥é“å¦‚æœåœ¨éœ€è¦åœ¨spring.xmlä¸­é…ç½®æ•°æ®æºï¼Œéœ€è¦è¿›è¡Œå¦‚ä¸‹çš„é…ç½®ï¼š
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">       
     <property name="driverClassName" value="com.mysql.jdbc.Driver" />      
     <property name="url" value="jdbc:mysql://localhost:3309/sampledb" />      
     <property name="username" value="root" />      
     <property name="password" value="1234" />      
 </bean>
-ÕâÖÖ·½Ê½ÅäÖÃËäÈ»Ò²±È½Ï¼òµ¥£¬µ«ÊÇÓĞÒ»¸öÈ±µã£ºÊ¹ÓÃ<property>±êÇ©²»¹»Ã÷ÏÔ£¬²»ÈçÔªËØÊôĞÔÄÇÃ´Ö±½Ó¡£ÏÖÔÚÎÒÃÇÏ£ÍûÔÚspring.xmlÖĞ×öÈçÏÂµÄÅäÖÃ£¬¾ÍÄÜ¹»Íê³ÉÊı¾İÔ´µÄÅäÖÃ¡£<aty:datasource id="myDataSourcce" url="jdbc:mysql://localhost:3309/demodb" userName="root" password="root" />
-ÕâÖÖ·½Ê½±È½ÏÖ±½Ó£¬ÅäÖÃ²»ÈİÒ×³ö´í¡£Èç¹ûÈÃspringÄÜ¹»½âÎöÕâ¸ö±êÇ©£¬ĞèÒª4²½¡£1¡¢Ìá¹©Ò»¸öxsdÎÄ¼ş£¬¸ºÔğ¶ÔxmlµÄ±êÇ©<datasource>½øĞĞĞ£Ñé
+è¿™ç§æ–¹å¼é…ç½®è™½ç„¶ä¹Ÿæ¯”è¾ƒç®€å•ï¼Œä½†æ˜¯æœ‰ä¸€ä¸ªç¼ºç‚¹ï¼šä½¿ç”¨<property>æ ‡ç­¾ä¸å¤Ÿæ˜æ˜¾ï¼Œä¸å¦‚å…ƒç´ å±æ€§é‚£ä¹ˆç›´æ¥ã€‚ç°åœ¨æˆ‘ä»¬å¸Œæœ›åœ¨spring.xmlä¸­åšå¦‚ä¸‹çš„é…ç½®ï¼Œå°±èƒ½å¤Ÿå®Œæˆæ•°æ®æºçš„é…ç½®ã€‚<aty:datasource id="myDataSourcce" url="jdbc:mysql://localhost:3309/demodb" userName="root" password="root" />
+è¿™ç§æ–¹å¼æ¯”è¾ƒç›´æ¥ï¼Œé…ç½®ä¸å®¹æ˜“å‡ºé”™ã€‚å¦‚æœè®©springèƒ½å¤Ÿè§£æè¿™ä¸ªæ ‡ç­¾ï¼Œéœ€è¦4æ­¥ã€‚1ã€æä¾›ä¸€ä¸ªxsdæ–‡ä»¶ï¼Œè´Ÿè´£å¯¹xmlçš„æ ‡ç­¾<datasource>è¿›è¡Œæ ¡éªŒ
 <?xml version="1.0" encoding= "UTF-8"?>
 <xsd:schema xmlns="http://www.aty.com/schema/aty" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:beans= "http://www.springframework.org/schema/beans"
@@ -30,8 +30,8 @@ Spring¿ò¼Ü´Ó2.0°æ±¾¿ªÊ¼£¬Ìá¹©ÁË»ùÓÚSchema·ç¸ñµÄXMLÀ©Õ¹»úÖÆ£¬ÔÊĞí¿ª·¢ÕßÀ©Õ¹×î»ù±¾
   </xsd:element >
 
 </xsd:schema>
-2¡¢¶¨ÒåÒ»¸öBeanDefinitionParser¸ºÔğ½âÎöxml,²¢½«±ØÒªµÄĞÅÏ¢·ÅÈëspringÖĞ
-DataSourceInfoÀà
+2ã€å®šä¹‰ä¸€ä¸ªBeanDefinitionParserè´Ÿè´£è§£æxml,å¹¶å°†å¿…è¦çš„ä¿¡æ¯æ”¾å…¥springä¸­
+DataSourceInfoç±»
 package com.dyp.test.spring.test;
 
 public class DataSourceInfo {
@@ -64,7 +64,7 @@ public class DataSourceInfo {
       }
 }
 
-BeanDefinitionParserÀà
+BeanDefinitionParserç±»
 package com.dyp.test.spring.test;
 
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -81,16 +81,16 @@ public class DatasourceBeanDefinitionParser implements BeanDefinitionParser {
        public BeanDefinition parse(Element element , ParserContext context) {
             RootBeanDefinition def = new RootBeanDefinition();
 
-          // ÉèÖÃBean Class
+          // è®¾ç½®Bean Class
           def.setBeanClass(DataSourceInfo.class);
 
-          // ×¢²áIDÊôĞÔ
+          // æ³¨å†ŒIDå±æ€§
           String id = element.getAttribute("id" );
           BeanDefinitionHolder idHolder = new BeanDefinitionHolder(def, id);
           BeanDefinitionReaderUtils. registerBeanDefinition(idHolder,
               context.getRegistry());
 
-          // ×¢²áÊôĞÔ
+          // æ³¨å†Œå±æ€§
           String url = element .getAttribute("url");
           String userName = element .getAttribute("userName");
           String password = element .getAttribute("password");
@@ -116,8 +116,8 @@ public class DatasourceBeanDefinitionParser implements BeanDefinitionParser {
       }
 
 }
-¸ÃÀàµÄ¹¦ÄÜ£ºÉèÖÃÏà¹ØµÄBeanClass£¬½âÎöÁË¶ÔÓ¦µÄxsdÎÄ¼ş£¬²¢½«½âÎöµÄÄÚÈİ×¢²áµ½ÉÏÏÂÎÄÖĞ£¬Í¬Ê±·µ»ØÒ»¸öBeanDefinition¶ÔÏó£¨BeanDefinitionÊÇSpringµÄbean¶¨Òå£¬Ìá¹©ÁËbean²¿·ÖµÄ²Ù×÷·½·¨£¬ÈçisSingleton()¡¢isLazyInit()µÈ)¡£×¢Òâ£ºidÊôĞÔÊÇÒ»¸öÄ¬ÈÏµÄÊôĞÔ£¬¿ÉÒÔ²»ÔÚxsdÎÄ¼şÖĞÃèÊö£¬µ«ÊÇĞèÒª×¢²áËü£¬·ñÔò½«ÎŞ·¨Í¨¹ıgetBean·½·¨»ñÈ¡±êÇ©¶¨ÒåµÄbean£¬Ò²ÎŞ·¨±»ÆäËûbeanÒıÓÃ¡£
-3¡¢¶¨Òå¸öNamespaceHandler,ÓÉsping¿ò¼ÜµÄµ÷ÓÃÈë¿Ú¡£ÕâÒ²ÊÇÎÒÃÇ×Ô¶¨Òåxml½âÎöµÄÈë¿Ú
+è¯¥ç±»çš„åŠŸèƒ½ï¼šè®¾ç½®ç›¸å…³çš„BeanClassï¼Œè§£æäº†å¯¹åº”çš„xsdæ–‡ä»¶ï¼Œå¹¶å°†è§£æçš„å†…å®¹æ³¨å†Œåˆ°ä¸Šä¸‹æ–‡ä¸­ï¼ŒåŒæ—¶è¿”å›ä¸€ä¸ªBeanDefinitionå¯¹è±¡ï¼ˆBeanDefinitionæ˜¯Springçš„beanå®šä¹‰ï¼Œæä¾›äº†beanéƒ¨åˆ†çš„æ“ä½œæ–¹æ³•ï¼Œå¦‚isSingleton()ã€isLazyInit()ç­‰)ã€‚æ³¨æ„ï¼šidå±æ€§æ˜¯ä¸€ä¸ªé»˜è®¤çš„å±æ€§ï¼Œå¯ä»¥ä¸åœ¨xsdæ–‡ä»¶ä¸­æè¿°ï¼Œä½†æ˜¯éœ€è¦æ³¨å†Œå®ƒï¼Œå¦åˆ™å°†æ— æ³•é€šè¿‡getBeanæ–¹æ³•è·å–æ ‡ç­¾å®šä¹‰çš„beanï¼Œä¹Ÿæ— æ³•è¢«å…¶ä»–beanå¼•ç”¨ã€‚
+3ã€å®šä¹‰ä¸ªNamespaceHandler,ç”±spingæ¡†æ¶çš„è°ƒç”¨å…¥å£ã€‚è¿™ä¹Ÿæ˜¯æˆ‘ä»¬è‡ªå®šä¹‰xmlè§£æçš„å…¥å£
 package com.dyp.test.spring.test;
 
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
@@ -132,13 +132,13 @@ public class DatasourceNamespaceHandlerSupport extends NamespaceHandlerSupport {
       }
 
 }
-4¡¢ÅäÖÃschemaºÍhandlerSpringÃ»ÄÇÃ´´ÏÃ÷£¬ËüÎŞ·¨ÖªµÀÎÒÃÇÔÚÊ²Ã´µØ·½¶¨ÒåÁËÄÄĞ©À©Õ¹±êÇ©£¬ÕâĞ©±êÇ©½«±»Ë­½âÎö£¬ÔõÃ´½âÎö¡£Õâ¸ö¹ı³ÌÒªÎÒÃÇÍ¨¹ıÒ»Ğ©ÅäÖÃÎÄ¼şÀ´¸æÖªSpringÖªµÀ£¬ËüÃÇ¾ÍÊÇspring.handlersºÍspring.schemas£¬ËüÃÇ·ÅÔÚMETA-INFÄ¿Â¼ÖĞ¡£Spring.jarµÄMETA-INFÄ¿Â¼ÖĞÒ²ÓĞÍ¬ÃûµÄÎÄ¼ş£¬ËüÃÇµÄÎÄ¼şÄÚÈİ»ù±¾ÉÏÊÇÏàËÆµÄ£¬¶øSpringÔÚÖ´ĞĞ¹ı³ÌÖĞ£¬Èç¹û·¢ÏÖÆäËûjarÎÄ¼şµÄMETA-INFÎÄ¼ş¼ĞÖĞ°üº¬ÓĞÕâÁ½¸öÎÄ¼ş£¬Spring½«»áºÏ²¢ËüÃÇ¡£
-spring.handlersÄÚÈİÈçÏÂ: 
+4ã€é…ç½®schemaå’ŒhandlerSpringæ²¡é‚£ä¹ˆèªæ˜ï¼Œå®ƒæ— æ³•çŸ¥é“æˆ‘ä»¬åœ¨ä»€ä¹ˆåœ°æ–¹å®šä¹‰äº†å“ªäº›æ‰©å±•æ ‡ç­¾ï¼Œè¿™äº›æ ‡ç­¾å°†è¢«è°è§£æï¼Œæ€ä¹ˆè§£æã€‚è¿™ä¸ªè¿‡ç¨‹è¦æˆ‘ä»¬é€šè¿‡ä¸€äº›é…ç½®æ–‡ä»¶æ¥å‘ŠçŸ¥SpringçŸ¥é“ï¼Œå®ƒä»¬å°±æ˜¯spring.handlerså’Œspring.schemasï¼Œå®ƒä»¬æ”¾åœ¨META-INFç›®å½•ä¸­ã€‚Spring.jarçš„META-INFç›®å½•ä¸­ä¹Ÿæœ‰åŒåçš„æ–‡ä»¶ï¼Œå®ƒä»¬çš„æ–‡ä»¶å†…å®¹åŸºæœ¬ä¸Šæ˜¯ç›¸ä¼¼çš„ï¼Œè€ŒSpringåœ¨æ‰§è¡Œè¿‡ç¨‹ä¸­ï¼Œå¦‚æœå‘ç°å…¶ä»–jaræ–‡ä»¶çš„META-INFæ–‡ä»¶å¤¹ä¸­åŒ…å«æœ‰è¿™ä¸¤ä¸ªæ–‡ä»¶ï¼ŒSpringå°†ä¼šåˆå¹¶å®ƒä»¬ã€‚
+spring.handlerså†…å®¹å¦‚ä¸‹: 
 
 http\://www.aty.com/schema/aty=com.dyp.test.spring.test.DatasourceNamespaceHandlerSupport
-spring.schemasÄÚÈİÈçÏÂ:
+spring.schemaså†…å®¹å¦‚ä¸‹:
 http\://www.aty.com/schema/aty.xsd=aty.xsd
-²âÊÔ¹¤³ÌµÄspring.xmlÅäÖÃÈçÏÂ£º
+æµ‹è¯•å·¥ç¨‹çš„spring.xmlé…ç½®å¦‚ä¸‹ï¼š
 <?xml version="1.0" encoding= "UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
@@ -150,7 +150,7 @@ http\://www.aty.com/schema/aty.xsd=aty.xsd
   <aty:datasource id="myDataSourcce" url="jdbc:mysql://localhost:3309/demodb" userName= "root" password ="root" />
 
 </beans>
-²âÊÔÀà´úÂëÈçÏÂ£º
+æµ‹è¯•ç±»ä»£ç å¦‚ä¸‹ï¼š
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App
@@ -162,7 +162,7 @@ public class App
         System. out.println(d );
     }
 }
-²âÊÔµÄ¹¤³ÌÄ¿Â¼½á¹¹ÈçÏÂ£º
+æµ‹è¯•çš„å·¥ç¨‹ç›®å½•ç»“æ„å¦‚ä¸‹ï¼š
 Pom.xml
   <dependencies >
     <dependency >
