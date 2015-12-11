@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import models.ErrorRoot;
 import models.LotInfo;
 import models.ParkMeReturn;
 import models.Phone;
@@ -96,8 +97,8 @@ public class RESTClientTest {
 			body.add("f_id", "105280");
 			body.add("action", "Reserve");
 			body.add("pk_reservation_product", "28cf38a1-0c15-4eac-8a91-6753e2b8922d");
-			String meterRoot = HttpReqClinet.postReqProxy(HostEnum.PARKME_HOST_RESERVATION, body, String.class);
-			System.out.println(meterRoot);
+			ErrorRoot meterRoot = HttpReqClinet.postReqProxy(HostEnum.PARKME_HOST_RESERVATION, body, ErrorRoot.class);
+			System.out.println(meterRoot.toString()+ meterRoot.getError().getErrorDescription());
 		}
 		catch(HttpStatusCodeException  e)
 		{
