@@ -2,7 +2,7 @@ package com.test.client;
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.codec.binary.Base64; //need to add tomcat jar  in build path (Add libery-->Server runtime)
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
