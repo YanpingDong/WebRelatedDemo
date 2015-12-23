@@ -22,14 +22,17 @@
     
 	<description>Spring Hibernate4 integration context</description>
 	
+	<!-- 加载配置属性文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath*:/configuration.properties" />
+	
 	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
 	<context:component-scan base-package="com.dyp.test.spring.hibernate4.entity"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-	
+   
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">  
-	    <property name="driverClass" value="org.h2.Driver" />  
-	    <property name="jdbcUrl" value="jdbc:h2:tcp://localhost/mem:memdb" />  
+	    <property name="driverClass" value="${jdbc.driver}" />  
+	    <property name="jdbcUrl" value="${jdbc.url}"/>  
 	    <property name="user" value="root" />  
 	    <property name="password" value="123456" />  
 	    <property name="minPoolSize" value="10" />  
