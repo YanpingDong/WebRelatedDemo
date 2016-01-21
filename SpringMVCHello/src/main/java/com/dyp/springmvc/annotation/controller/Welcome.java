@@ -3,6 +3,7 @@ package com.dyp.springmvc.annotation.controller;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Welcome {
 	
 	@RequestMapping("/**")
-	public void map2All()
+	public @ResponseBody String map2All()
 	{
 		System.out.println("match all request URL");
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.TEXT_HTML);
+		return "map to all";
 	}
 	
 	
