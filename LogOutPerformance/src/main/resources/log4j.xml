@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">           
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">      
+    <!-- 输出日志到控制台  ConsoleAppender -->   
+        <appender name="console"   
+        class="org.apache.log4j.ConsoleAppender">  
+        <param name="Threshold" value="info"></param>  
+        <layout class="org.apache.log4j.TTCCLayout">  
+            <param name="ConversionPattern" value="TTCCLayout"></param>  
+        </layout>  
+    </appender>  
+  
+    <!-- 输出日志到文件  每天一个文件 -->  
+    <appender name="dailyRollingFile"  
+        class="org.apache.log4j.DailyRollingFileAppender">  
+        <param name="Threshold" value="info"></param>  
+        <param name="ImmediateFlush" value="true"></param>  
+        <param name="File" value="logs/dailyRollingFile.log"></param>  
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"></param>  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>  
+        </layout>  
+    </appender>   
+      
+    <!-- 输出日志到文件  文件大小到达指定尺寸的时候产生一个新的文件 -->  
+    <appender name="railyFile"   
+        class="org.apache.log4j.RollingFileAppender">  
+        <param name="File" value="logs/railyFile.log"></param>  
+        <param name="ImmediateFlush" value="true"/>  
+        <param name="Threshold" value="info"></param>  
+        <param name="Append" value="true"></param>  
+        <param name="MaxFileSize" value="30KB"></param>  
+        <param name="MaxBackupIndex" value="100"></param>  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>  
+        </layout>  
+    </appender>  
+  
+    <!-- 输出日志到文件 -->  
+    <appender name="file"  
+        class="org.apache.log4j.FileAppender">  
+        <param name="File" value="logs/file.log"></param>  
+        <param name="ImmediateFlush" value="false"></param>
+        <param name="Threshold" value="ERROR"></param>
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>  
+        </layout>  
+    </appender>
+
+    <appender name="fileT"  
+        class="org.apache.log4j.FileAppender">  
+        <param name="File" value="logs/fileT.log"></param>  
+        <param name="ImmediateFlush" value="true"></param>
+        <param name="Threshold" value="ERROR"></param>
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>  
+        </layout>  
+    </appender>
+
+    
+    <appender name="bufferfile"  
+        class="org.apache.log4j.FileAppender">  
+        <param name="File" value="logs/bufferfile.log"></param>  
+        <param name="Threshold" value="ERROR"></param>  
+        <param name="ImmediateFlush" value="false"></param>
+        <param name="bufferedIO" value="true"></param>
+        <param name="BufferSize" value="4"></param>
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] {%c:%L}-%m%n"></param>  
+        </layout>  
+    </appender>    
+    
+    <appender name="flume" class="org.apache.flume.clients.log4jappender.Log4jAppender">      
+     <layout class="org.apache.log4j.PatternLayout">   
+            <param name="ConversionPattern"   
+                value="%d{yyyy-MM-dd HH:mm:ss} %-5p: %m%n" />     
+        </layout>  
+      <param name="Hostname" value="10.120.137.144"/>  
+      <param name="Port" value="44444"/>  
+    </appender>
+    
+    <appender name="kafka" class="kafka.producer.KafkaLog4jAppender">
+      <param name="Topic" value="test" />
+      <param name="BrokerList" value="10.120.137.144:9092" />
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L %% - %m%n" />
+      </layout>
+    </appender>
+    
+    <!--- 异步测试，当日志达到缓存区大小时候执行所包的appender -->   
+    <appender name="ASYNC_test" class="org.apache.log4j.AsyncAppender">      
+      <param name="ImmediateFlush" value="false"></param>
+      <param name="BufferSize" value="8"></param>
+      <appender-ref ref="flume"/>   
+    </appender>
+    
+    <!-- ===================================================================== -->  
+    <!-- 日志写出器：每一个logger可以有多个输出目的地和输出方式                -->  
+    <!-- ===================================================================== -->  
+    <logger name="com.dyp.buffer.controller" additivity="false">  
+        <level value="ERROR"></level>
+        <appender-ref ref="bufferfile"></appender-ref>
+    </logger>
+    
+    <logger name="com.dyp.kafka.controller" additivity="false">  
+        <level value="ERROR"></level>
+        <appender-ref ref="kafka"></appender-ref>
+    </logger>
+    
+    <logger name="com.dyp.async.flume.controller" additivity="false">  
+        <level value="ERROR"></level>
+        <appender-ref ref="ASYNC_test"></appender-ref>
+    </logger>
+    
+    <logger name="com.dyp.file.controller" additivity="false">  
+        <level value="ERROR"></level>
+        <appender-ref ref="fileT"></appender-ref>
+    </logger>
+    
+    <logger name="com.dyp.flume.controller" additivity="false">  
+        <level value="ERROR"></level>
+        <appender-ref ref="flume"></appender-ref>
+    </logger>
+    
+    
+  
+    <!--定义全局的日志输出级别,但是在输出目的地的配置中配置的具体输出级别优先级高于全局定义的优先级。  
+                  如果在railyFile中定义<param name="Threshold" value="info"></param>，
+                  那么将会把info以上级别的信息输出  -->  
+    <root>       
+        <priority value="ERROR" />          
+        <appender-ref ref="file" />    
+    </root>         
+  
+</log4j:configuration>
