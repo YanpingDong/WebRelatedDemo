@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="        
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd         
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd         
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd   
+		http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.2.xsd        
+	">
+
+    <context:component-scan base-package="com.test">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<bean id="allEncompassingFormHttpMessageConverter" 
+	   class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter">
+	</bean> 
+	
+    <bean id="fastJsonHttpMessageConverter"  
+        class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">  
+  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>application/json;charset=UTF-8</value>  
+                <value>text/html;charset=UTF-8</value><!-- 避免IE出现下载JSON文件的情况 -->  
+            </list>  
+        </property>  
+        <property name="features">  
+            <util:list>  
+                <!-- <value>WriteMapNullValue</value> -->  
+                <value>QuoteFieldNames</value>  
+                <value>WriteDateUseDateFormat</value>  
+            </util:list>  
+        </property>  
+    </bean>  
+    <!-- 返回类型定义 -->  
+    <util:list id="messageConverters">  
+        <ref bean="fastJsonHttpMessageConverter" /> 
+        <ref bean="allEncompassingFormHttpMessageConverter"/> 
+    </util:list>
+      
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters" ref="messageConverters">  </property>  
+    </bean>
+   
+</beans>

@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity  
@@ -24,18 +22,21 @@ public class Employee {
 	 */
 	@ManyToMany( fetch = FetchType.LAZY, targetEntity=Role.class, mappedBy="employeeSet") 
 	private Set<Role> roleSet = new HashSet<Role>();//角色集合 
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public Set<Role> getRoleSet() {
 		return roleSet;
 	}

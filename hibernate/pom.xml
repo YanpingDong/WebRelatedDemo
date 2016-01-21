@@ -12,9 +12,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <hibernate.version>4.0.0.Final</hibernate.version>
+    <hibernate.version>4.2.0.Final</hibernate.version>
     <spring.version>3.1.4.RELEASE</spring.version>
     <kundera.version>2.14</kundera.version>
+    <jdk.version>1.7</jdk.version>
   </properties>
   
   
@@ -24,6 +25,19 @@
 		<artifactId>spring-instrument</artifactId>
 		<version>3.1.4.RELEASE</version>
 	  </dependency>
+	  
+	 <dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.0.15</version>
+	 </dependency>
+	  
+    <!-- MySQL JDBC driver -->
+    <dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.35</version>
+	</dependency>
     
     <!-- h2 JDBC driver -->
     <dependency>
@@ -36,13 +50,13 @@
 	  <groupId>org.hibernate</groupId>
 	  <artifactId>hibernate-core</artifactId>
 	  <version>${hibernate.version}</version>
-    </dependency>
+    </dependency> 
     <!-- Hibernate O/RM implementation of the JPA specification -->
     <dependency>
 	  <groupId>org.hibernate</groupId>
 	  <artifactId>hibernate-entitymanager</artifactId>
 	  <version>${hibernate.version}</version>
-    </dependency>
+    </dependency> 
     
     <!-- c3p0 Data sources that implement Connection and Statement Pooling-->
     <dependency>

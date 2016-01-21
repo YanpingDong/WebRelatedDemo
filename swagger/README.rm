@@ -1,0 +1,3 @@
+Running step
+Step 1: Run Jetty in Eclipse
+Step 2: issue http://localhost:8080/swagger/index.html in brower
