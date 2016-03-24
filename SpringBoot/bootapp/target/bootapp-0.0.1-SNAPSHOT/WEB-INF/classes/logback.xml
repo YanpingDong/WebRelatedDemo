@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<appender name="dailyRollingFileAppenderTest" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+    <File>data/log/app.log</File>  
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">    <!-- daily rollover -->    
+    <FileNamePattern>rest-demo.%d{yyyy-MM-dd}.log</FileNamePattern>    <!-- keep 30 days' worth of history -->   
+    <maxHistory>30</maxHistory>          
+  </rollingPolicy> 
+  <encoder>   
+     <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern> 
+  </encoder>       
+</appender>
+
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	<logger name="org.bootapp" level="DEBUG">
+	   <appender-ref ref="CONSOLE"/> 
+	   <appender-ref ref="dailyRollingFileAppenderTest"/> 
+	</logger>
+	<logger name="org" level="ERROR"/>
+	<logger name="com" level="ERROR"/>
+	<jmxConfigurator/>
+</configuration>
