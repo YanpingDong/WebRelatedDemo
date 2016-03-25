@@ -1,8 +1,0 @@
-org\bootapp\model\User.class
-org\bootapp\exception\handle\ControllerExcptionAdvice.class
-org\bootapp\DemoApplication.class
-org\bootapp\ServletInitializer.class
-org\bootapp\controller\BasedErrorHandleController.class
-org\bootapp\controller\LandLordController.class
-org\bootapp\model\Error.class
-org\bootapp\exception\handle\MyException.class
