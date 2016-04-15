@@ -41,7 +41,7 @@ public class LandLordController {
     	return "test" + userid + " : " ;
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST,produces = "application/json; charset=UTF-8")  
+    @RequestMapping(value="/create", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")  
     @ApiOperation(value = "Create new user", notes = "Creates new user---notes detail")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Fields are with validation errors",response=Error.class),
@@ -54,7 +54,7 @@ public class LandLordController {
 	    return user;  
 	}  
     
-    //write here or in ControllerExcptionAdvice.java
+    //write here or in org.bootapp.exception.handle.ControllerExcptionAdvice.java
     /*@ExceptionHandler(MissingServletRequestParameterException.class)  
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)  
     public Error handleUnexpectedServerError(MissingServletRequestParameterException ex,HttpServletRequest request) {  
