@@ -1,4 +1,4 @@
-package org.webconfig;
+package org.bootapp.webconfig;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

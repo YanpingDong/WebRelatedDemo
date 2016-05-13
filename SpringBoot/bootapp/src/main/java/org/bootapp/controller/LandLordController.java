@@ -24,6 +24,8 @@ public class LandLordController {
 
     private static final Logger logger = LoggerFactory.getLogger(LandLordController.class);
 
+    
+    
     @RequestMapping(value="{userid}", method = RequestMethod.GET)
     @ApiOperation(value = "Create new Landlord", notes = "Creates new Landlord", response=String.class)
 	@ApiResponses(value = {
@@ -41,6 +43,11 @@ public class LandLordController {
     	return "test" + userid + " : " ;
     }
 
+    public String convertStringToDate(@RequestParam(value="date",required=false) String date )
+    {
+    	return "date string is ";
+    }
+    
     @RequestMapping(value="/create", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")  
     @ApiOperation(value = "Create new user", notes = "Creates new user---notes detail")
     @ApiResponses(value = {

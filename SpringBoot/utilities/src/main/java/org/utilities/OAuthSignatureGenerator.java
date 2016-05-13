@@ -1,4 +1,4 @@
-package org.bootapp;
+package org.utilities;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
