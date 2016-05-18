@@ -2,11 +2,10 @@ package org.bootapp.model;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
-@ApiModel(description = "Uniform error")
+@ApiModel(description = "Uniform error info")
 public class Error {
 	private String uri;
 	private String method;
@@ -31,6 +30,7 @@ public class Error {
 	public void setUri(String uri) {
 		this.uri = uri;
 	}
+	
 	@ApiModelProperty(value = "invoked method")
 	public String getMethod() {
 		return method;
@@ -38,6 +38,7 @@ public class Error {
 	public void setMethod(String method) {
 		this.method = method;
 	}
+	
 	@ApiModelProperty(value = "ErrorCode")
 	public int getErrorCode() {
 		return errorCode;
@@ -45,6 +46,7 @@ public class Error {
 	public void setErrorCode(int errorCode) {
 		this.errorCode = errorCode;
 	}
+	
 	@ApiModelProperty(value = "ErrorMessage")
 	public String getErrorMessage() {
 		return errorMessage;

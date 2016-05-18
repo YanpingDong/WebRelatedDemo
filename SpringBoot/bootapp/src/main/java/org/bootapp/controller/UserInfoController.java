@@ -2,8 +2,10 @@ package org.bootapp.controller;
 import org.bootapp.exception.handle.MyException;
 import org.bootapp.model.Error;
 import org.bootapp.model.User;
+import org.bootapp.service.ForTestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,46 +19,50 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
-@Api(basePath = "/user/", value = "Landlords", description = "Operations with Landlords", produces = "application/json")
+@Api(basePath = "/user/", value = "user", description = "CRUD user info", produces = "application/json")
 @RestController
 @RequestMapping(value = "/user/")
-public class LandLordController {
+public class UserInfoController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LandLordController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
 
-    
+    @Autowired
+    private ForTestService forTestService;
     
     @RequestMapping(value="{userid}", method = RequestMethod.GET)
-    @ApiOperation(value = "Create new Landlord", notes = "Creates new Landlord", response=String.class)
+    @ApiOperation(value = "Get user info by user id", notes = "Get user info by user id ------please use this to describe detail ", response=String.class)
 	@ApiResponses(value = {
             @ApiResponse(code = 400, message = "Fields are with validation errors",response=Error.class),
             @ApiResponse(code = 401, message = "Unauthorized",response=Error.class),
             @ApiResponse(code = 403, message = "Forbidden",response=Error.class),
             @ApiResponse(code = 404, message = "Not Found",response=Error.class)
             })
-    public String createLandLord(@ApiParam(value = "user id", required = true, defaultValue="123" )
-                                 @PathVariable(value = "userid") String userid,
-    		                     @ApiParam(value = "p", required = true, defaultValue="p" ) 
-                                 @RequestParam(value="p",required=true) String xxx, 
-                                 @ApiParam(value = "b", required = false, defaultValue="b" ) 
-    		                     @RequestParam(value="b",required=false) String b) throws MyException {
-    	return "test" + userid + " : " ;
-    }
-
-    public String convertStringToDate(@RequestParam(value="date",required=false) String date )
-    {
-    	return "date string is ";
+    public String getUserInfo(@ApiParam(value = "user id", required = true, defaultValue="123" )
+                                 @PathVariable(value = "userid") int userid,
+    		                     @ApiParam(value = "gender", required = true, defaultValue="male" ) 
+                                 @RequestParam(value="gender",required=true) String gender) throws MyException {
+    	
+    	if(null == gender)
+    	{
+    		if(logger.isDebugEnabled())
+    			logger.debug("start to judge gender");
+    		throw new MyException("missed gender parameter, in request uri. please add ?gender=male or female");
+    	}
+    		
+    	String userInfo = forTestService.getInfo(userid);
+    		 	
+    	return "user info : " + userid + " ; " + "user gender : " + gender + " ; " + "user info : " + userInfo;
     }
     
     @RequestMapping(value="/create", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")  
-    @ApiOperation(value = "Create new user", notes = "Creates new user---notes detail")
+    @ApiOperation(value = "Create new user", notes = "Creates new user---please use this to describe detail")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Fields are with validation errors",response=Error.class),
             @ApiResponse(code = 401, message = "Unauthorized",response=Error.class),
             @ApiResponse(code = 403, message = "Forbidden",response=Error.class),
             @ApiResponse(code = 404, message = "Not Found",response=Error.class)
             })
-    public User view(@ApiParam(value = "user json", required = true,defaultValue="{\"id\": 0,\"xxxName\": \"xxxx\"}" ) @RequestBody User user) {  
+    public User updateUserInfo(@ApiParam(value = "user json", required = true,defaultValue="{\"id\": 0,\"xxxName\": \"xxxx\"}" ) @RequestBody User user) {  
 	
 	    return user;  
 	}  

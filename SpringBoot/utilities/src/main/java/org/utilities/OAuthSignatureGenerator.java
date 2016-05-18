@@ -15,7 +15,9 @@ import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.commons.codec.binary.Base64;
+
+//import org.apache.tomcat.util.codec.binary.Base64;
 
 //import org.glassfish.jersey.oauth1.signature.Base64;
 

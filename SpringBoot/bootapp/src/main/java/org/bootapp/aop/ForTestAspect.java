@@ -18,18 +18,18 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class ForTestAspect {
 	private static final Logger logger = LoggerFactory.getLogger(ForTestAspect.class);
 	
-	@Pointcut("execution(public * org.bootapp.controller.LandLordController.*(..))")
+	@Pointcut("execution(public * org.bootapp.controller.UserInfoController.*(..))")
 	private void pointCut(){}
-	
+	/*u will see the error info in the console, when you start a request to /user/*/
 	@Before("pointCut()")
     public void beforeInit() throws Throwable {
 		RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
         HttpServletResponse response = ((ServletRequestAttributes)requestAttributes).getResponse();
-        logger.info("before in voke controller method " + request.getMethod() + " " + request.getRemoteAddr());
+        logger.error("before in voke controller method " + request.getMethod() + " " + request.getRemoteAddr());
     }
     @After("pointCut()")
     public void afterInit() throws Throwable {
-    	logger.info("after in voke controller method ");
+    	logger.error("after in voke controller method ");
     }
 }

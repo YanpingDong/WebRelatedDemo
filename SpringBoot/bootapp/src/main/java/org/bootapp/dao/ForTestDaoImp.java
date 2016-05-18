@@ -2,7 +2,7 @@ package org.bootapp.dao;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("forTestDaoImp")
 public class ForTestDaoImp implements ForTestDao {
 
 	@Override

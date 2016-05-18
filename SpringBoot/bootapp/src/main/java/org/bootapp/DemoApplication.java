@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.utilities.config.EnableApiDoc;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages="org.bootapp")
 @EnableApiDoc  //self created annotation for start swagger
 public class DemoApplication {
 	private static Logger LOG = 

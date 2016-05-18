@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JMockit Coverage Report - OAuthSignatureGenerator.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../logo.png'/>
+  <script type='text/javascript' src='../../coverage.js'></script>
+  <script type='text/javascript' src='../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>utilities\src\main\java\org\utilities\OAuthSignatureGenerator.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package org.utilities;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Base64;
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>20</td><td>&nbsp;</td>
+      <td><pre class='comment'>//import org.apache.tomcat.util.codec.binary.Base64;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='comment'>//import org.glassfish.jersey.oauth1.signature.Base64;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>24</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class OAuthSignatureGenerator {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	 private static final String HMAC_SHA1 = "HmacSHA1";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private static final String ENC = "UTF-8";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private String nonce;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private String timestamp;</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public OAuthSignatureGenerator()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    nonce = String.valueOf((int) (Math.random() * 100000000));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    timestamp = String.valueOf(System.currentTimeMillis() / 1000);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * Build the OAuth 1.0 HTTP Authorization Header.
+	   * @param apiKey
+	   *     - The public API key that authorizes your access to Rovi Cloud,
+	   *       provided by Rovi when you signed up for the service.
+	   * @param signature
+	   *     - The string result of the
+	   *       {@link #generateSignature(String, String, String, String)} method.
+	   * @return
+	   * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.5.1">RFC5849
+	   *      Authorization Header&lt;/a>
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>48</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public String buildAuthorizationHeader(String apiKey, String signature)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>50</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    StringBuilder oAuthHeader = new StringBuilder();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append("OAuth ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(String.format("oauth_consumer_key=%s", apiKey));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(", ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>54</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append("oauth_version=1.0");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>55</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(", ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>56</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append("oauth_signature_method=HMAC-SHA1");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(", ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(String.format("oauth_timestamp=%s", timestamp));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(", ");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(String.format("oauth_nonce=%s", nonce));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    oAuthHeader.append(", ");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    try</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      oAuthHeader.append("oauth_signature=" + percentEncode(signature));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    catch (Exception e)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      e.printStackTrace();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>72</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return oAuthHeader.toString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * Generate the OAuth 1.0 signature.
+	   * @param httpMethod
+	   *          - The HTTP request method in uppercase.
+	   * @param url
+	   *     - The HTTP request URL.
+	   * @param consumerKey
+	   *     - The public API key that authorizes your access to Rovi Cloud,
+	   *       provided by Rovi when you signed up for the service.
+	   * @param consumerSecret
+	   *     - The secret is used to generate the value of `oauth_signature`
+	   *       and should never be transmitted.
+	   * @return
+	   * @throws UnsupportedEncodingException
+	   * @throws NoSuchAlgorithmException
+	   * @throws InvalidKeyException
+	   * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.4">RFC5849
+	   *      Signature&lt;/a>
+	   * @see &lt;a href=
+	   *      "http://oauth.googlecode.com/svn/code/javascript/example/signature.html">
+	   *      OAuth 1.0 Signature Generator&lt;/a>
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public String generateSignature(String httpMethod, String url,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	                                  String consumerKey, String consumerSecret)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>99</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	                                    throws UnsupportedEncodingException,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>100</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	                                    NoSuchAlgorithmException,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>101</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	                                    InvalidKeyException</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	    /**
+	     * Base String URI
+	     * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.4.1.2">RFC5849
+	     *      Base String URI&lt;/a>
+	     */</div><span>	    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>108</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    String baseURL = new String(url);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>109</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    int index = url.indexOf('?');</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>110</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    if (index != -1)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>111</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>112</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      baseURL = url.substring(0, url.indexOf('?')); // .toLowerCase(); only the</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>113</td><td>&nbsp;</td>
+      <td><pre class='comment'>	                                                    // scheme and host should be</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>114</td><td>&nbsp;</td>
+      <td><pre class='comment'>	                                                    // lowercase</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>115</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	    /**
+	     * String Construction
+	     * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.4.1.1">RFC5849
+	     *      String Construction&lt;/a> The signature base string has three parts,
+	     *      connected by "&": 1) HTTP Method, 2) Percent-encoded base URL, and
+	     *      3) Percent-encoded request parameters.
+	     */</div><span>	    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    Base64 base64 = new Base64();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    StringBuilder signatureBaseString = new StringBuilder();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    signatureBaseString.append(httpMethod);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    signatureBaseString.append("&");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    signatureBaseString.append(percentEncode(baseURL));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    signatureBaseString.append("&");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    signatureBaseString.append(generateRequestParameters(url, consumerKey));</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	    /**
+	     * Generate the HMAC_SHA1 signature
+	     * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.4.2">RFC5849
+	     *      HMAC-SHA1&lt;/a>
+	     */</div><span>	    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    byte[] keyBytes = (consumerSecret + "&").getBytes(ENC);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    SecretKey key = new SecretKeySpec(keyBytes, HMAC_SHA1);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    Mac mac = Mac.getInstance(HMAC_SHA1);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>140</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    mac.init(key);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>142</td><td>&nbsp;</td>
+      <td><pre class='comment'>	 // encode it, base64 it, change it to string and return.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	    /*String signature = new String(base64
+	      .encode(mac.doFinal(signatureBaseString.toString().getBytes(ENC))).getBytes(),ENC)
+	      .trim();*/</div><span>	    /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    String signature = new String(base64.encode(mac.doFinal(signatureBaseString.toString().getBytes(ENC))))</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      .trim();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>148</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return signature;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>149</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * OAuth 1.0 percent encode.
+	   * @param s
+	   *      The string to be encoded.
+	   * @return
+	   * @throws UnsupportedEncodingException
+	   * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.6">RFC5849 OAuth
+	   *      1.0 Percent Encoding&lt;/a>
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>160</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private String percentEncode(String s) throws UnsupportedEncodingException</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return URLEncoder.encode(s, ENC).replace("+", "%20").replace("%7E", "~")</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>163</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      .replace("%2E", ".").replace("%2D", "-").replace("%5F", "_");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>164</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * Generate the request parameter string.
+	   * @param url
+	   *     - The HTTP request URL.
+	   * @param consumerKey
+	   *     - The public API key that authorizes your access to Rovi Cloud,
+	   *       provided by Rovi when you signed up for the service.
+	   * @return
+	   * @throws UnsupportedEncodingException
+	   * @see &lt;a href="http://tools.ietf.org/html/rfc5849#section-3.4.1.3">RFC5849
+	   *      Request Parameters&lt;/a>
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private String generateRequestParameters(String url, String consumerKey)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>179</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    throws UnsupportedEncodingException</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>180</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>182</td><td>&nbsp;</td>
+      <td><pre class='comment'>	    // Extract request parameters from the URL and store in a sorted collection.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>183</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    Map&lt;String, String> paramMap = new TreeMap&lt;String, String>();</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>185</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    Map&lt;String, String> param0s = parse(url);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>186</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    for (String key : param0s.keySet())</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>187</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>188</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      paramMap.put(key, percentEncode(param0s.get(key)));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>189</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>191</td><td>&nbsp;</td>
+      <td><pre class='comment'>	    // Add the OAuth request parameters to the collection of parameters.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>192</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    paramMap.put("oauth_consumer_key", consumerKey);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>193</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    paramMap.put("oauth_nonce", nonce);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>194</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    paramMap.put("oauth_signature_method", "HMAC-SHA1");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>195</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    paramMap.put("oauth_timestamp", timestamp);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>196</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    paramMap.put("oauth_version", "1.0");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='comment'>	    // Build the request parameters string.</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    StringBuilder paramStringBuilder = new StringBuilder();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    for (Map.Entry&lt;String, String> entry : paramMap.entrySet())</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>201</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>202</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      paramStringBuilder.append(entry.getKey());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>203</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      paramStringBuilder.append("=");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>204</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      paramStringBuilder.append(entry.getValue());</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>205</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      paramStringBuilder.append("&");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    paramStringBuilder.deleteCharAt(paramStringBuilder.length() - 1);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    String params = paramStringBuilder.toString();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>209</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return percentEncode(params);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>210</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>212</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private final String QUERY_SEPARATOR = "\\?";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private final String PARAMETER_SEPARATOR = "&";</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>214</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  private final String NAME_VALUE_SEPARATOR = "=";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>216</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public Map&lt;String, String> parse(String uri)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>217</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    throws UnsupportedEncodingException</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>218</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>219</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    Map&lt;String, String> result = Collections.emptyMap();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>220</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    String[] uriParts = uri.split(QUERY_SEPARATOR);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    if (uriParts.length > 1)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      result = new HashMap&lt;String, String>();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>224</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      parse(result, new Scanner(uriParts[1]));</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>225</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>226</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return result;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>227</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>229</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public void parse(final Map&lt;String, String> parameters, final Scanner scanner)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>230</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    throws UnsupportedEncodingException</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>231</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>232</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    scanner.useDelimiter(PARAMETER_SEPARATOR);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>233</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    while (scanner.hasNext())</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>234</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>235</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      final String[] nameValue = scanner.next().split(NAME_VALUE_SEPARATOR, 2);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>236</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      if (nameValue.length == 0)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	        throw new IllegalArgumentException("bad parameter");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>239</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      final String name = URLDecoder.decode(nameValue[0], ENC);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>240</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      String value = null;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>241</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      if (nameValue.length == 2)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>242</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	        value = URLDecoder.decode(nameValue[1], ENC);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>243</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      parameters.put(name, value);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>244</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>245</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * @see #nonce
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>250</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public String getNonce()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>251</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>252</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return nonce;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>253</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * To override the default nonce created in constructor
+	   * @see #nonce
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>259</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public void setNonce(String nonce)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>260</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>261</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    this.nonce = nonce;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>262</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * @see #timestamp
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>267</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public String getTimestamp()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>268</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>269</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    return timestamp;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>270</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>	  /**
+	   * To override the default timestamp set in constructor
+	   * @see #timestamp
+	   */</div><span>	  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>276</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public void setTimestamp(String timestamp)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>277</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>278</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    this.timestamp = timestamp;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>279</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>281</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  public static void main(String[] args)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>282</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>283</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    try</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>284</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>285</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      String httpMethod = "GET",</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>286</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	          url = "http://sample.url.com/query?samplequery=sample value",</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>287</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	          consumerKey = "key", consumerSecret = "secret";</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>289</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      OAuthSignatureGenerator oauth = new OAuthSignatureGenerator();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>290</td><td>&nbsp;</td>
+      <td><pre class='comment'>	      // overriding nonce and timestamp</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>291</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      oauth.setTimestamp("1458478319");</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>292</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      oauth.setNonce("78834590");</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>294</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      String signature =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>295</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	        oauth.generateSignature(httpMethod, url, consumerKey, consumerSecret);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>296</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      String oauthHeader =</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>297</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	        oauth.buildAuthorizationHeader(consumerKey, signature);</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>299</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      System.out.println("Authorization Header:\n" + oauthHeader);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>300</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>301</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    catch (InvalidKeyException e)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>302</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>303</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      e.printStackTrace();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>304</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>305</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    catch (UnsupportedEncodingException e)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>306</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>307</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      e.printStackTrace();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>308</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>309</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    catch (NoSuchAlgorithmException e)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>310</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>311</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	      e.printStackTrace();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>312</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>313</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	  }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>314</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>
