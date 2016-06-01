@@ -5,6 +5,7 @@
 *.bak
 *.log
 *.prefs
+*.jar
 .classpath
 .project
 

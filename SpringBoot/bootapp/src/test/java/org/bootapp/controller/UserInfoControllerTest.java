@@ -3,6 +3,7 @@ package org.bootapp.controller;
 import static org.junit.Assert.fail;
 
 import org.bootapp.DemoApplication;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +43,11 @@ public class UserInfoControllerTest {
 	@Before
 	public void setupMockMvc() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+	}
+	
+    @After
+	public void releaseMockMvc(){
+		mockMvc = null;
 	}
 	
 	public void missParametersQuestTest(MockMvc mockMvc, RequestBuilder requestBuilder) throws Exception {

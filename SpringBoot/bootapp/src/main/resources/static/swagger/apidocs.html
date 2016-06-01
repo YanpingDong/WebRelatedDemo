@@ -36,7 +36,12 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "/api-docs";
+    	  var pathName =  window.document.location.pathname;
+    	  var projectName = pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    	  if(projectName=="/swagger"){
+    		  projectName="";
+    	  }
+          url = projectName+"/api-docs";
       }
 
       // Pre load translate...

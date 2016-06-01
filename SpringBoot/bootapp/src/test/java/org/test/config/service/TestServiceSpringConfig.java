@@ -16,10 +16,10 @@ import org.springframework.context.annotation.FilterType;
  * way 2: the second can be use in situation that have more classes to be tested
  */
 //way 1
-/*@ComponentScan(basePackageClasses={ForTestService.class, ForTestDaoImpStub.class},useDefaultFilters=true,
-               excludeFilters={@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value = {ForTestDaoImp.class}) })*/
+@ComponentScan(basePackageClasses={ForTestService.class, ForTestDaoImpStub.class},useDefaultFilters=true,
+               excludeFilters={@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value = {ForTestDaoImp.class}) })
 //way 2 
-@ComponentScan(basePackages={"org.bootapp.dao", "org.bootapp.service"},useDefaultFilters=true,
-               excludeFilters={@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value = {ForTestDaoImp.class}) } )
+/*@ComponentScan(basePackages={"org.bootapp.dao", "org.bootapp.service"},useDefaultFilters=true,
+               excludeFilters={@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value = {ForTestDaoImp.class}) } )*/
 public class TestServiceSpringConfig {
 }
