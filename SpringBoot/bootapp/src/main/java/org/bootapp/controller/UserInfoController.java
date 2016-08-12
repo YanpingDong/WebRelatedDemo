@@ -1,11 +1,23 @@
 package org.bootapp.controller;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.bootapp.exception.handle.MyException;
 import org.bootapp.model.Error;
+import org.bootapp.model.Jsr303ValidationTestModel;
 import org.bootapp.model.User;
 import org.bootapp.service.ForTestService;
+import org.bootapp.validator.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +40,14 @@ public class UserInfoController {
 
     @Autowired
     private ForTestService forTestService;
+    
+
+	@InitBinder  
+    public void initBinder(DataBinder binder) { 
+       binder.addValidators(new UserValidator());
+    } 
+
+
     
     @RequestMapping(value="{userid}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ApiOperation(value = "Get user info by user id", notes = "Get user info by user id ------please use this to describe detail ", response=String.class)
@@ -62,10 +82,29 @@ public class UserInfoController {
             @ApiResponse(code = 403, message = "Forbidden",response=Error.class),
             @ApiResponse(code = 404, message = "Not Found",response=Error.class)
             })
-    public User updateUserInfo(@ApiParam(value = "user json", required = true,defaultValue="{\"id\": 0,\"xxxName\": \"xxxx\"}" ) @RequestBody User user) {  
+    public User updateUserInfo(@ApiParam(value = "user json", required = true,defaultValue="{\"id\": 0,\"xxxName\": \"xxxx\"}" ) 
+                               @RequestBody  @Valid User user, BindingResult result) throws MissingServletRequestParameterException {  
+    	if(result.hasErrors())
+    		throw new MissingServletRequestParameterException(result.getNestedPath(), result.getObjectName() );
 	
 	    return user;  
-	}  
+	}
+    
+    @RequestMapping(value="/jsr", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")  
+    @ApiOperation(value = "Create new user", notes = "Creates new user---please use this to describe detail")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Fields are with validation errors",response=Error.class),
+            @ApiResponse(code = 401, message = "Unauthorized",response=Error.class),
+            @ApiResponse(code = 403, message = "Forbidden",response=Error.class),
+            @ApiResponse(code = 404, message = "Not Found",response=Error.class)
+            })
+    public Jsr303ValidationTestModel getJsr303ValidationTestModel(@ApiParam(value = "jsr model json", required = true,defaultValue="{\"notNullInfo\":\"\"}" ) 
+                               @RequestBody  @Valid Jsr303ValidationTestModel jsrModel, BindingResult result) throws MissingServletRequestParameterException {  
+    	if(result.hasErrors())
+    		throw new MissingServletRequestParameterException(result.getRawFieldValue("notNullInfo").toString(), result.getRawFieldValue("notNullInfo").toString() );
+	
+	    return jsrModel;  
+	}
     
     //write here or in org.bootapp.exception.handle.ControllerExcptionAdvice.java
     /*@ExceptionHandler(MissingServletRequestParameterException.class)  
