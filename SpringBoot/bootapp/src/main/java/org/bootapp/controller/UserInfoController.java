@@ -14,8 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
-import org.springframework.validation.Validator;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,12 +97,32 @@ public class UserInfoController {
             @ApiResponse(code = 403, message = "Forbidden",response=Error.class),
             @ApiResponse(code = 404, message = "Not Found",response=Error.class)
             })
-    public Jsr303ValidationTestModel getJsr303ValidationTestModel(@ApiParam(value = "jsr model json", required = true,defaultValue="{\"notNullInfo\":\"\"}" ) 
-                               @RequestBody  @Valid Jsr303ValidationTestModel jsrModel, BindingResult result) throws MissingServletRequestParameterException {  
+    public Jsr303ValidationTestModel getJsr303ValidationTestModel(@ApiParam(value = "jsr model json", required = true,
+    defaultValue="{\"notNullInfo\":\"info\", "
+    		 + "\"compsiteObject\":{"
+    		                     + "\"map\":{"
+    		                             + "\"testKey\":\"testValue\""
+    		                             + "}"
+    		                     + "}"
+    		   + "}" ) 
+        @RequestBody  @Valid Jsr303ValidationTestModel jsrModel, BindingResult result) throws MissingServletRequestParameterException { 
     	if(result.hasErrors())
-    		throw new MissingServletRequestParameterException(result.getRawFieldValue("notNullInfo").toString(), result.getRawFieldValue("notNullInfo").toString() );
-	
+    	{
+    		String errorInfo = extractErrorInfo(result);
+    		throw new MissingServletRequestParameterException("detail see info", errorInfo );
+    	}
+    	    
 	    return jsrModel;  
+	}
+    
+    private String extractErrorInfo(BindingResult result) {
+		String errorInfo = new String();
+		List<FieldError> fieldErrors = result.getFieldErrors();
+		for(FieldError fieldError : fieldErrors)
+		{
+			errorInfo += fieldError.getField() + " : " + fieldError.getDefaultMessage() + "; ";
+		}
+		return errorInfo;
 	}
     
     //write here or in org.bootapp.exception.handle.ControllerExcptionAdvice.java

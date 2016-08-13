@@ -25,6 +25,7 @@ public class DemoApplication implements EmbeddedServletContainerCustomizer
 	String contextPath;
 	private static Logger LOG = 
 			LoggerFactory.getLogger(DemoApplication.class);
+	
 	public static void main(String[] args)  {
 		LOG.debug("=============for logback configuration test============");
 		SpringApplication.run(DemoApplication.class, args);
