@@ -98,7 +98,8 @@ public class UserInfoController {
             @ApiResponse(code = 404, message = "Not Found",response=Error.class)
             })
     public Jsr303ValidationTestModel getJsr303ValidationTestModel(@ApiParam(value = "jsr model json", required = true,
-    defaultValue="{\"notNullInfo\":\"info\", "
+    defaultValue="{\"notNullInfo\":\"info\","
+    		             + "\"id\":\"123\" ,"
     		 + "\"compsiteObject\":{"
     		                     + "\"map\":{"
     		                             + "\"testKey\":\"testValue\""

@@ -4,7 +4,7 @@ import org.bootapp.validator.constraints.CompositeObjectNotEmpty;
 import org.hibernate.validator.constraints.NotBlank;
 
 
-public class Jsr303ValidationTestModel {
+public class Jsr303ValidationTestModel extends IdObject{
 	
 	@NotBlank(message="this info cann't be null")  
 	private String notNullInfo;
