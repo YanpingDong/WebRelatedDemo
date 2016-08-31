@@ -39,7 +39,6 @@ public class UserInfoController {
 
     @Autowired
     private ForTestService forTestService;
-    
 
 	@InitBinder  
     public void initBinder(DataBinder binder) { 
@@ -47,7 +46,7 @@ public class UserInfoController {
     } 
 
 
-    
+
     @RequestMapping(value="{userid}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ApiOperation(value = "Get user info by user id", notes = "Get user info by user id ------please use this to describe detail ", response=String.class)
 	@ApiResponses(value = {

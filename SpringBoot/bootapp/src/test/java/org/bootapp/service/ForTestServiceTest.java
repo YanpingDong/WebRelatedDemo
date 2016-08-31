@@ -9,6 +9,7 @@ import org.bootapp.utilities.jmockit.test.CompositeFunctionClass;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,6 +19,7 @@ import org.test.config.service.TestServiceSpringConfig;
 @SpringApplicationConfiguration(classes = TestServiceSpringConfig.class)
 public class ForTestServiceTest {
 
+	@InjectMocks
 	@Autowired
 	private ForTestService fortestService;
 	

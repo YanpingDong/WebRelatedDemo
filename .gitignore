@@ -6,6 +6,7 @@
 *.log
 *.prefs
 *.jar
+*.docx
 .classpath
 .project
 

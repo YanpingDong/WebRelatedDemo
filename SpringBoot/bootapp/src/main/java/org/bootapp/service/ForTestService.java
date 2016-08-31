@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 public class ForTestService {
 	private static final Logger logger = LoggerFactory.getLogger(ForTestService.class);
 	
-	@Autowired
+	@Autowired(required=false)
 	@Qualifier(value="forTestDaoImp")
-	ForTestDao forTestDao;
+	private ForTestDao forTestDao;
 	
 	public String getInfo(int id) throws MyException {	
 		
