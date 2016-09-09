@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class ServiceTestWithMockitoTest {
+public class ServiceTestWithMockitoUnitTest {
 	
 	@InjectMocks
 	private ForTestService fortestService;

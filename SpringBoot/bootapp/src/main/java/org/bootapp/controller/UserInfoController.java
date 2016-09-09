@@ -1,6 +1,7 @@
 package org.bootapp.controller;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.bootapp.exception.handle.MyException;
@@ -12,16 +13,21 @@ import org.bootapp.validator.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wordnik.swagger.annotations.Api;
@@ -45,8 +51,6 @@ public class UserInfoController {
        binder.addValidators(new UserValidator());
     } 
 
-
-
     @RequestMapping(value="{userid}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     @ApiOperation(value = "Get user info by user id", notes = "Get user info by user id ------please use this to describe detail ", response=String.class)
 	@ApiResponses(value = {
@@ -55,7 +59,7 @@ public class UserInfoController {
             @ApiResponse(code = 403, message = "Forbidden",response=Error.class),
             @ApiResponse(code = 404, message = "Not Found",response=Error.class)
             })
-    public String getUserInfo(@ApiParam(value = "user id", required = true, defaultValue="123" )
+    public String getUserInfo(   @ApiParam(value = "user id", required = true, defaultValue="123" )
                                  @PathVariable(value = "userid") int userid,
     		                     @ApiParam(value = "gender", required = true, defaultValue="male" ) 
                                  @RequestParam(value="gender",required=true) String gender) throws MyException {
@@ -126,8 +130,21 @@ public class UserInfoController {
 	}
     
     //write here or in org.bootapp.exception.handle.ControllerExcptionAdvice.java
-    /*@ExceptionHandler(MissingServletRequestParameterException.class)  
+    /*@ExceptionHandler(MyException.class)  
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)  
+	@ResponseBody
+    public Error handleUnexpectedServerError(MyException ex,HttpServletRequest request) {  
+    	Error error = new Error();
+    	error.setErrorCode(HttpStatus.BAD_REQUEST.value());
+    	error.setErrorMessage(ex.getMessage());
+    	error.setUri(request.getServletPath());
+    	error.setMethod(request.getMethod());
+        return error;  
+    }
+	
+	@ExceptionHandler(MissingServletRequestParameterException.class)  
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	@ResponseBody
     public Error handleUnexpectedServerError(MissingServletRequestParameterException ex,HttpServletRequest request) {  
     	Error error = new Error();
     	error.setErrorCode(HttpStatus.BAD_REQUEST.value());
@@ -135,5 +152,17 @@ public class UserInfoController {
     	error.setUri(request.getServletPath());
     	error.setMethod(request.getMethod());
         return error;  
-    }*/ 
+    }
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)  
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)  
+    public Error handleMethodArgumentNotValidException(MethodArgumentNotValidException ex,HttpServletRequest request) {  
+    	Error error = new Error();
+    	error.setErrorCode(HttpStatus.BAD_REQUEST.value());
+    	error.setErrorMessage(ex.getMessage());
+    	error.setUri(request.getServletPath());
+    	error.setMethod(request.getMethod());
+        return error;  
+    }*/
+   
 }

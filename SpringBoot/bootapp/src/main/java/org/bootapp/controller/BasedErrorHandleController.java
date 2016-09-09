@@ -23,7 +23,6 @@ public class BasedErrorHandleController {
         return error;  
     }
 	
-	//MethodArgumentNotValidException
 	@ExceptionHandler(MethodArgumentNotValidException.class)  
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)  
     public Error handleMethodArgumentNotValidException(MethodArgumentNotValidException ex,HttpServletRequest request) {  
