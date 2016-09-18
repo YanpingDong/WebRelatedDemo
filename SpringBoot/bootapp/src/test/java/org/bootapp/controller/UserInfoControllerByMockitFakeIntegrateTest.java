@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.context.WebApplicationContext;
 
-public class UserInfoControllerByMockitIntegrateTest {
+public class UserInfoControllerByMockitFakeIntegrateTest {
 
 	private MockMvc mockMvc;
 	
