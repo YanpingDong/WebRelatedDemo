@@ -59,6 +59,12 @@
 	    <artifactId>feign-gson</artifactId>
 	    <version>8.18.0</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru -->
+	<dependency>
+	    <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+	    <artifactId>concurrentlinkedhashmap-lru</artifactId>
+	    <version>1.4.2</version>
+	</dependency>
 	
   </dependencies>
   <build>
